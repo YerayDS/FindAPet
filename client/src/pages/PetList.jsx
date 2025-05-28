@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getAllPets } from "../services/petService";
 import PetCard from "../components/PetCard";
+import '../styles/PetList.css'
+
 
 export default function PetList() {
   const [pets, setPets] = useState([]);

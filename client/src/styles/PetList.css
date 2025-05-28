@@ -1,0 +1,11 @@
+.animals-container {
+  background-color: #fff;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.animals-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}

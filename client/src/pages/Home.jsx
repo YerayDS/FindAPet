@@ -1,21 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa";
+import "../styles/Home.css";
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
   return (
-    <div className="p-6 text-center">
-      <h1 className="text-4xl font-bold mb-4">Welcome to Pawfect Match 🐾</h1>
-      <p className="text-lg mb-6">
-        Helping pets find loving homes. Browse available pets or learn about our adoption process.
-      </p>
-      <div className="flex justify-center gap-4">
-        <Link to="/pets" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-          View Pets
-        </Link>
-        <Link to="/about" className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">
-          About Adoption
-        </Link>
-      </div>
+    <div className="home-page">
+      <nav className={`navbar ${menuOpen ? "expanded" : ""}`}>
+        <div className="navbar-top">
+          <h1 className="logo">Pawfect Match 🐾</h1>
+          <div className="menu-icon" onClick={toggleMenu}>
+            {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </div>
+        </div>
+        <div className="nav-menu">
+          <Link to="/pets" onClick={() => setMenuOpen(false)}>Pet List</Link>
+          <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
+        </div>
+      </nav>
+
+      <section className="adoption-section">
+        <h3 className="adoption-quote">
+          Adopt a pet, save a life
+        </h3>
+        <img src="/assets/humandog.jpg" alt="Pet adoption" className="adoption-image" />
+
+        <p className="adoption-stats">
+          Approximately <strong>75,000</strong> animals are abandoned every day.
+        </p>
+      </section>
     </div>
   );
 }

@@ -1,0 +1,143 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar Container */
+.navbar {
+  background-color: #fcbf97;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  box-shadow: none; /* sin sombra */
+  z-index: 1000;
+  overflow: hidden;
+  max-height: 60px; /* altura navbar cuando está cerrada */
+  transition: max-height 0.4s ease;
+}
+
+/* Navbar expandida */
+.navbar.expanded {
+  max-height: 300px; /* suficiente para mostrar menú */
+}
+
+/* Contenedor superior: logo y hamburguesa */
+.navbar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rem 2rem;
+}
+
+/* Logo text */
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  padding: 0;
+  margin: 1rem;
+}
+
+/* Icono hamburguesa */
+.menu-icon {
+  cursor: pointer;
+  color: #333;
+  font-size: 2rem;
+  user-select: none;
+}
+
+/* Menú de navegación */
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fcbf97;
+  padding: 0 0 1rem 0;
+  gap: 1rem;
+}
+
+/* Links */
+.nav-menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 700;
+  background-color: #ffe6d0;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  width: 90%;
+  text-align: center;
+  user-select: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover/focus de links */
+.nav-menu a:hover,
+.nav-menu a:focus {
+  background-color: #f889447b;
+  color: #000;
+}
+
+/* Contenido principal de la página */
+.home-content {
+  margin-top: 80px; /* espacio para navbar fija */
+  text-align: center;
+  padding: 2rem;
+}
+
+.home-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.home-content p {
+  font-size: 1.25rem;
+  color: #555;
+}
+
+.home-page {
+  padding-top: 20px; 
+}
+
+.adoption-section {
+  background: #ffe9d6;
+  background-size: cover;
+  padding: 3rem 2rem 2rem 2rem;
+  margin: 2rem 0; /* quitar auto para que no centre con max-width */
+  width: 100%;  /* ocupa todo el ancho */
+  border-radius: 0; /* sin bordes redondeados */
+  box-shadow: none; /* sin sombra */
+  text-align: center;
+  color: #333;
+}
+
+.adoption-quote {
+  font-size: 3.5rem; /* tamaño grande */
+  font-weight: 700; /* un poco más negrita */
+  margin-bottom: 3rem;
+  margin-top: 0;
+  color: #264653; /* un azul oscuro más cálido, menos frío */
+  letter-spacing: 0.05em; /* un poco más de espacio entre letras */
+  text-shadow: 0 1px 3px rgba(0,0,0,0.1); /* sombra muy sutil para dar profundidad */
+}
+
+.adoption-image {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  margin-bottom: 1.5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.adoption-stats {
+  font-size: 1.8rem; /* más grande */
+  font-weight: 500;
+  color: #7b3e00;
+  margin-top: 0; /* para que no tenga espacio extra arriba */
+}
