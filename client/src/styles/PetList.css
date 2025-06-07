@@ -1,11 +1,353 @@
-.animals-container {
-  background-color: #fff;
-  min-height: 100vh;
-  padding: 2rem;
+body {
+  margin: 0;
+  padding: 0;
 }
 
-.animals-title {
+/* Navbar */
+.petlist-navbar {
+  background-color: #fcbf97; /* naranja/ocre */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  max-height: 60px;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  z-index: 1000;
+  box-shadow: none; /* sin sombra */
+}
+
+.petlist-navbar.expanded {
+  max-height: 300px; /* suficiente para mostrar menú */
+}
+
+/* Contenedor top igual a home */
+.petlist-navbar .navbar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+/* Logo igual a home */
+.petlist-navbar .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin: 1rem 0 1rem 2rem;
+  padding: 0;
+  user-select: none;
+  position: static;
+}
+
+/* Icono hamburguesa */
+.petlist-navbar .menu-icon {
+  cursor: pointer;
+  color: #333;
+  font-size: 2rem;
+  user-select: none;
+}
+
+.petlist-navbar .nav-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fcbf97;
+  padding-bottom: 1rem;
+  gap: 1rem;
+}
+
+.petlist-navbar .nav-menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 700;
+  background-color: #ffe6d0;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  width: 90%;
   text-align: center;
+  user-select: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.petlist-navbar .nav-menu a:hover,
+.petlist-navbar .nav-menu a:focus {
+  background-color: #f889447b;
+  color: #000;
+}
+
+.main-content {
+  margin-top: 60px; /* espacio para navbar fijo */
+  padding: 2rem;
+  text-align: center;
+}
+
+.main-title {
+  font-size: 3.9rem; /* muy grande para el título principal */
+  font-weight: 800;
+  color: #264653; /* azul oscuro elegante */
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 2.0rem; /* grande, pero menor que el título */
+  font-weight: 600;
+  color: #264653; /* azul oscuro elegante */
+}
+
+.register-section {
+  max-width: 900px;
+  margin: 0 auto 3rem;
+  padding: 1rem 2rem;
+  background-color: #f0f4f8;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  color: #222;
+}
+
+/* Form y lista */
+.pet-list-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  background-color: #f0f4f8;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  color: #222;
+}
+
+.pet-list-container h2,
+.pet-list-container h3 {
+  color: #264653;
+}
+
+/* Form */
+.pet-form input,
+.pet-form select,
+.pet-form button {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.pet-form button {
+  background-color: #fcbf97;
+  color: #333;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pet-form button:hover {
+  background-color: #f88944;
+  color: #000;
+}
+
+/* LIST SECTION */
+.pet-list-section h3 {
+  font-size: 2.8rem; /* tamaño grande */
+  color: #264653;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.pet-list-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* siempre 3 columnas iguales */
+  gap: 2rem;
+  padding: 0;
+  list-style: none;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.pet-card {
+  width: 100%;
+  height: 480px;      /* más alta que ancha */
+  background-color: #ffe6d0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: #333;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 12px;
+}
+
+.pet-photo-large {
+  width: 100%;
+  height: 75%;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.pet-details {
+  padding: 1rem;
+  flex-grow: 1; /* ocupa espacio restante */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+  text-align: center;
+  color: #333;
+}
+
+.pet-name-gender {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+
+.pet-name-gender strong {
+  font-size: 2rem;
+  color: #000;
+}
+
+.gender-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.pet-info-age-size {
+  font-weight: 600;
+  color: #000;
+  font-size: 1.1rem;
+}
+
+/* Estilos para la sección de filtros */
+.filter-section {
+  max-width: 1200px;
+  margin: 2rem auto 3rem;
+  padding: 1rem;
+}
+
+.filter-section h3 {
+  font-size: 2rem;
+  color: #264653;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.filter-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.filter-form select,
+.filter-form input[type="text"] {
+  padding: 0.6rem 1rem;
+  font-size: 1.1rem;
+  border: 2px solid #264653;
+  border-radius: 8px;
+  min-width: 150px;
+  max-width: 220px;
+  transition: border-color 0.3s ease;
+}
+
+.filter-form select:focus,
+.filter-form input[type="text"]:focus {
+  outline: none;
+  border-color: #2a9d8f;
+  background-color: #f0f8f7;
+}
+
+.filter-form button {
+  padding: 0.6rem 1.6rem;
+  font-size: 1.1rem;
+  background-color: #e76f51;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: center;
+  min-width: 140px;
+}
+
+.filter-form button:hover {
+  background-color: #d65a3f;
+}
+
+/* ============================= */
+/* MODAL Y BOTÓN PARA REGISTRAR   */
+/* ============================= */
+
+/* Contenedor para el botón que abre el modal */
+.register-button-container {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.register-button {
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: #264653;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.register-button:hover {
+  background-color: #1f3b43;
+}
+
+/* Fondo oscuro semitransparente para modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Caja blanca del modal */
+.modal-content {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Botón de cerrar modal ("×") */
+.modal-close-btn {
+  position: absolute;
+  top: 0.6rem;
+  right: 1rem;
   font-size: 2.5rem;
-  margin-bottom: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #e76f51;
+  font-weight: bold;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.modal-close-btn:hover {
+  color: #d65a3f;
 }

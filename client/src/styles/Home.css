@@ -22,12 +22,11 @@ body {
   max-height: 300px; /* suficiente para mostrar menú */
 }
 
-/* Contenedor superior: logo y hamburguesa */
 .navbar-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0rem 2rem;
+  padding: 0 2rem; /* padding a izquierda y derecha */
 }
 
 /* Logo text */
@@ -35,8 +34,9 @@ body {
   font-size: 1.8rem;
   font-weight: bold;
   color: #333;
+  margin: 1rem 0 1rem 2rem; /* margen top-bottom 1rem, y left fijo 2rem */
   padding: 0;
-  margin: 1rem;
+  user-select: none;
 }
 
 /* Icono hamburguesa */
