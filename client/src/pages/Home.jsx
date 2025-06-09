@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { AuthContext } from "../context/AuthContext";
+import Footer from "../components/Footer"; 
 import "../styles/Home.css";
 
 export default function Home() {
@@ -68,6 +69,7 @@ export default function Home() {
           Approximately <strong>75,000</strong> animals are abandoned every day.
         </p>
       </section>
+      <Footer />
     </div>
   );
 }

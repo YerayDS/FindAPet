@@ -5,6 +5,7 @@ import "../styles/PetList.css";
 import { getAllPets } from "../services/petService";
 import api from "../services/api";
 import { AuthContext } from "../context/AuthContext";
+import Footer from "../components/Footer"; 
 
 export default function PetList() {
   const location = useLocation();
@@ -344,6 +345,7 @@ export default function PetList() {
           )}
         </section>
       </main>
+      <Footer />
     </>
   );
 }

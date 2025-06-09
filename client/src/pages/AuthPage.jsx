@@ -63,100 +63,102 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="auth-container">
-      {/* Botón para cerrar y volver */}
-      <button
-        className="close-auth-button"
-        onClick={() => navigate(from)}
-        aria-label="Close authentication page"
-      >
-        ×
-      </button>
-
-      <div className="auth-toggle">
+    <div className="auth-page">
+      <div className="auth-container">
+        {/* Botón para cerrar y volver */}
         <button
-          onClick={() => setMode("login")}
-          className={mode === "login" ? "active" : ""}
+          className="close-auth-button"
+          onClick={() => navigate(from)}
+          aria-label="Close authentication page"
         >
-          Login
+          ×
         </button>
-        <button
-          onClick={() => setMode("register")}
-          className={mode === "register" ? "active" : ""}
-        >
-          Register
-        </button>
-      </div>
 
-      {mode === "login" ? (
-        <form onSubmit={handleLogin} className="auth-form">
-          <h2>Login</h2>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={loginForm.email}
-            onChange={handleLoginChange}
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={loginForm.password}
-            onChange={handleLoginChange}
-            required
-          />
-          <button type="submit">Login</button>
-        </form>
-      ) : (
-        <form onSubmit={handleRegister} className="auth-form">
-          <h2>Register</h2>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={registerForm.email}
-            onChange={handleRegisterChange}
-            required
-          />
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={registerForm.username}
-            onChange={handleRegisterChange}
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={registerForm.password}
-            onChange={handleRegisterChange}
-            required
-          />
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            value={registerForm.confirmPassword}
-            onChange={handleRegisterChange}
-            required
-          />
-          <select
-            name="role"
-            value={registerForm.role}
-            onChange={handleRegisterChange}
-            required
+        <div className="auth-toggle">
+          <button
+            onClick={() => setMode("login")}
+            className={mode === "login" ? "active" : ""}
           >
-            <option value="">What do you want to do?</option>
-            <option value="adopt">Adopt</option>
-            <option value="give_for_adoption">Give for Adoption</option>
-          </select>
-          <button type="submit">Register</button>
-        </form>
-      )}
+            Login
+          </button>
+          <button
+            onClick={() => setMode("register")}
+            className={mode === "register" ? "active" : ""}
+          >
+            Register
+          </button>
+        </div>
+
+        {mode === "login" ? (
+          <form onSubmit={handleLogin} className="auth-form">
+            <h2>Login</h2>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={loginForm.email}
+              onChange={handleLoginChange}
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={loginForm.password}
+              onChange={handleLoginChange}
+              required
+            />
+            <button type="submit">Login</button>
+          </form>
+        ) : (
+          <form onSubmit={handleRegister} className="auth-form">
+            <h2>Register</h2>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={registerForm.email}
+              onChange={handleRegisterChange}
+              required
+            />
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={registerForm.username}
+              onChange={handleRegisterChange}
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={registerForm.password}
+              onChange={handleRegisterChange}
+              required
+            />
+            <input
+              type="password"
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              value={registerForm.confirmPassword}
+              onChange={handleRegisterChange}
+              required
+            />
+            <select
+              name="role"
+              value={registerForm.role}
+              onChange={handleRegisterChange}
+              required
+            >
+              <option value="">What do you want to do?</option>
+              <option value="adopt">Adopt</option>
+              <option value="give_for_adoption">Give for Adoption</option>
+            </select>
+            <button type="submit">Register</button>
+          </form>
+        )}
+      </div>
     </div>
   );
 }

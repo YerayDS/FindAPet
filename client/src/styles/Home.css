@@ -116,9 +116,9 @@ body {
 
 /* Contenido principal de la página */
 .home-content {
-  margin-top: 80px; /* espacio para navbar fija */
+  margin-top: 80px;
   text-align: center;
-  padding: 2rem;
+  padding: 2rem 2rem 0 2rem; 
 }
 
 .home-content h2 {
@@ -140,10 +140,10 @@ body {
   background: #ffe9d6;
   background-size: cover;
   padding: 3rem 2rem 2rem 2rem;
-  margin: 2rem 0; /* quitar auto para que no centre con max-width */
-  width: 100%;  /* ocupa todo el ancho */
-  border-radius: 0; /* sin bordes redondeados */
-  box-shadow: none; /* sin sombra */
+  margin: 2rem 0 0 0; /* eliminamos el margen inferior */
+  width: 100%;
+  border-radius: 0;
+  box-shadow: none;
   text-align: center;
   color: #333;
 }
