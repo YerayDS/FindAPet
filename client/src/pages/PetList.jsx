@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import "../styles/PetList.css";
 import { getAllPets } from "../services/petService";
 import api from "../services/api";
+import { AuthContext } from "../context/AuthContext";
 
 export default function PetList() {
+  const location = useLocation();
+  const { user, logout } = useContext(AuthContext);
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [pets, setPets] = useState([]);
   const [filters, setFilters] = useState({
@@ -79,7 +83,7 @@ export default function PetList() {
       });
 
       fetchPets();
-      setShowRegisterForm(false); // Cerrar formulario al enviar
+      setShowRegisterForm(false);
     } catch (error) {
       console.error("Error creating pet:", error);
     }
@@ -87,13 +91,11 @@ export default function PetList() {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  // Maneja cambios en filtros
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
     setFilters((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Limpia los filtros
   const clearFilters = () => {
     setFilters({
       type: "",
@@ -104,7 +106,6 @@ export default function PetList() {
     });
   };
 
-  // Filtra las mascotas según filtros
   const filteredPets = pets.filter((pet) => {
     if (filters.type && pet.type !== filters.type) return false;
     if (filters.age && Number(pet.age) !== Number(filters.age)) return false;
@@ -127,8 +128,35 @@ export default function PetList() {
       <nav className={`petlist-navbar ${menuOpen ? "expanded" : ""}`}>
         <div className="navbar-top">
           <h1 className="logo">Pawfect Match 🐾</h1>
-          <div className="menu-icon" onClick={toggleMenu}>
-            {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          <div className="navbar-right">
+            {user ? (
+              <>
+                <span className="navbar-hello">
+                  Hello, <strong>{user.username || user.email}</strong>
+                </span>
+                <button
+                  onClick={() => {
+                    logout();
+                    setMenuOpen(false);
+                  }}
+                  className="logout-button"
+                >
+                  Log Out
+                </button>
+              </>
+            ) : (
+              <Link
+                to="/auth"
+                className="login-button"
+                onClick={() => setMenuOpen(false)}
+                state={{ from: location.pathname }}
+              >
+                Log In
+              </Link>
+            )}
+            <div className="menu-icon" onClick={toggleMenu}>
+              {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            </div>
           </div>
         </div>
         <div className="nav-menu">
@@ -199,13 +227,14 @@ export default function PetList() {
           </form>
         </section>
 
-        {/* Botón para abrir formulario */}
-        <div className="register-button-container">
-          <button className="register-button" onClick={openRegisterForm}>
-            Register New Pet
-          </button>
-        </div>
-
+        {/* Botón para abrir formulario SOLO SI user.role es give_for_adoption */}
+        {user?.role === "give_for_adoption" && (
+          <div className="register-button-container">
+            <button className="register-button" onClick={openRegisterForm}>
+              Register New Pet
+            </button>
+          </div>
+        )}
 
         {/* Modal con formulario */}
         {showRegisterForm && (

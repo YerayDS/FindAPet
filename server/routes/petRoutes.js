@@ -9,6 +9,8 @@ import {
   deletePet,
 } from "../controllers/petController.js";
 
+import { authenticateToken } from "../middleware/authMiddleware.js";  // Importa el middleware
+
 const router = express.Router();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -24,8 +26,16 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.get("/", getAllPets);
-router.post("/", upload.single("photo"), createPet);
-router.put("/:id", updatePet);
-router.delete("/:id", deletePet);
+
+// Ejemplo de ruta protegida (ejemplo simple)
+router.get("/protected", authenticateToken, (req, res) => {
+  res.json({ message: "This route is protected", user: req.user });
+});
+
+router.post("/", authenticateToken, upload.single("photo"), createPet); // Protección en ruta POST para crear mascota
+
+router.put("/:id", authenticateToken, updatePet); // Protegemos editar mascota
+
+router.delete("/:id", authenticateToken, deletePet); // Protegemos borrar mascota
 
 export default router;

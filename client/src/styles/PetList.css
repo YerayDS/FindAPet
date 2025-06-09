@@ -21,6 +21,31 @@ body {
   max-height: 300px; /* suficiente para mostrar menú */
 }
 
+.petlist-navbar .navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem; /* separación entre login y hamburguesa */
+}
+
+.petlist-navbar .login-button {
+  padding: 0.4rem 0.8rem;
+  background-color: #e76f51;
+  color: white;
+  font-weight: 700;
+  border-radius: 6px;
+  text-decoration: none;
+  user-select: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.petlist-navbar .menu-icon {
+  cursor: pointer;
+  color: #333;
+  font-size: 2rem;
+  user-select: none;
+}
+
 /* Contenedor top igual a home */
 .petlist-navbar .navbar-top {
   display: flex;

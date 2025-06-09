@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import path from "path";
 import { connectDB } from "./config/db.js";
 import petRoutes from "./routes/petRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+
 
 dotenv.config();
 const app = express();
@@ -30,6 +32,8 @@ app.get('/', (req, res) => {
 
 // Routes
 app.use("/api/pets", petRoutes);
+app.use("/api/auth", authRoutes);
+
 
 // Start server
 const PORT = 4000;
