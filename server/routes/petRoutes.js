@@ -7,6 +7,7 @@ import {
   createPet,
   updatePet,
   deletePet,
+  getPetById,
 } from "../controllers/petController.js";
 
 import { authenticateToken } from "../middleware/authMiddleware.js";  // Importa el middleware
@@ -26,6 +27,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.get("/", getAllPets);
+
+router.get("/:id", getPetById);
+
 
 // Ejemplo de ruta protegida (ejemplo simple)
 router.get("/protected", authenticateToken, (req, res) => {

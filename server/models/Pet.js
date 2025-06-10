@@ -10,7 +10,15 @@ const PetSchema = new mongoose.Schema(
     birthday: { type: Date, required: true },
     gender: { type: String, required: true },
     province: { type: String, required: true },
-    photo: { type: String },                        
+    photo: { type: String },
+
+    vaccinated: { type: Boolean, default: false },
+    microchip: { type: Boolean, default: false },
+    dewormed: { type: Boolean, default: false },
+    healthy: { type: Boolean, default: false },
+
+    about: { type: String }, 
+
   },
   { timestamps: true }
 );

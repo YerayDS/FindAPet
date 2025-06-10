@@ -264,17 +264,17 @@ export default function PetList() {
                 <select name="size" value={form.size} onChange={handleChange} required>
                   <option value="">Select Size</option>
                   <option value="Toy">Toy</option>
-                  <option value="Pequeño">Pequeño</option>
-                  <option value="Mediano">Mediano</option>
-                  <option value="Grande">Grande</option>
+                  <option value="Pequeño">Small</option>
+                  <option value="Mediano">Medium</option>
+                  <option value="Grande">Big</option>
                 </select>
                 <select name="type" value={form.type} onChange={handleChange} required>
                   <option value="">Select Animal Type</option>
-                  <option value="Perro">Perro</option>
-                  <option value="Gato">Gato</option>
-                  <option value="Pájaro">Pájaro</option>
-                  <option value="Conejo">Conejo</option>
-                  <option value="Hurón">Hurón</option>
+                  <option value="Perro">Dog</option>
+                  <option value="Gato">Cat</option>
+                  <option value="Pájaro">Bird</option>
+                  <option value="Conejo">Rabbit</option>
+                  <option value="Hurón">Ferret</option>
                 </select>
                 <input
                   name="breed"
@@ -290,8 +290,8 @@ export default function PetList() {
                 />
                 <select name="gender" value={form.gender} onChange={handleChange} required>
                   <option value="">Select Gender</option>
-                  <option value="Macho">Macho</option>
-                  <option value="Hembra">Hembra</option>
+                  <option value="Macho">Male</option>
+                  <option value="Hembra">Female</option>
                 </select>
                 <input
                   name="province"
@@ -338,6 +338,9 @@ export default function PetList() {
                     <div className="pet-info-age-size">
                       {pet.age} years old, {pet.size}
                     </div>
+                    <Link to={`/pet/${pet._id}`} className="adopt-button">
+                      Adopt me
+                    </Link>
                   </div>
                 </li>
               ))}

@@ -1,0 +1,245 @@
+.pet-detail-container {
+  margin-top: 5rem; /* o ajusta según la altura de tu navbar */
+  margin-bottom: 3rem; /* o ajusta según la altura de tu navbar */
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fff8f0;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 2rem;
+  display: flex;
+  gap: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.pet-photo {
+  width: 35rem;         /* Aproximadamente 288px si 1rem = 16px */
+  height: 35rem;
+  border-radius: 0.75rem;
+  object-fit: cover;
+  box-shadow: 0 0.25rem 0.9375rem rgba(0, 0, 0, 0.15);
+  flex-shrink: 0;
+}
+
+.pet-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea todo a la izquierda */
+  justify-content: flex-start;
+}
+
+.pet-name {
+  font-size: 2.5rem;
+  color: #e76f51;
+  margin-bottom: 1rem; /* Menos separación con los detalles */
+  text-align: left; /* Asegura que esté alineado a la izquierda */
+  width: 100%; /* Opcional, ayuda a que quede bien alineado */
+}
+
+.pet-detail {
+  display: flex;
+  flex-grow: 0;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea todo a la izquierda */
+}
+
+.info-title {
+  font-size: 1.5rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.pet-detail p {
+  font-size: 1.4rem;
+  margin: 0.3rem 0; /* Muy poco espacio entre líneas */
+  text-align: left; /* Alineado a la izquierda */
+  margin-left: 20px;
+
+}
+
+
+.about-me-text {
+  resize: none;  /* evita que se pueda cambiar el tamaño */
+  width: 100%;
+  min-height: 120px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+
+.pet-detail, .health-status {
+  flex: 1 1 250px; /* flexible pero mínimo 250px */
+}
+
+.health-status .info-detail p {
+  /* Puedes agregar estilos específicos si quieres */
+  margin: 0.3rem 0;
+}
+
+.info-columns {
+  display: flex;
+  gap: 2rem;         /* separación entre columnas */
+  flex-wrap: nowrap; /* fuerza que estén en fila, no en columna */
+  justify-content: flex-start;
+}
+
+.pet-detail, .health-status {
+  flex: 1;            /* ocupan espacio igual */
+  min-width: 250px;   /* para evitar que se achiquen demasiado */
+}
+
+.health-status .info-detail p,
+.pet-detail .info-detail p {
+  margin: 0.3rem 0;
+}
+
+.about-me-section {
+  margin-top: 2rem;
+}
+
+.chat-button {
+  position: absolute;
+  bottom: 30px;       /* separación del borde inferior del contenedor */
+  left: 75%;
+  transform: translateX(-50%);
+  padding: 0.6rem 1.5rem;
+  font-size: 1.1rem;
+  background-color: #e76f51;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease;
+}
+
+.top-right-buttons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 8px; /* espacio entre botones */
+  z-index: 10;
+}
+
+/* Botón edit (izquierda) */
+.edit-button-icon {
+  background-color: #2a9d8f; /* azul verdoso */
+  border: none;
+  cursor: pointer;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.edit-button-icon:hover {
+  background-color: #23867a;
+}
+
+.save-button {
+  background-color: #23867a; /* verde azulado */
+  color: white;
+  border: none;
+  padding: 5px 5px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 12px;
+  display: inline-block;
+  min-width: 60px;
+  text-align: center;
+}
+
+.cancel-button {
+  background-color: #d9534f; /* rojo */
+  color: white;
+  border: none;
+  padding: 5px 5px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+  min-width: 60px;
+  text-align: center;
+}
+
+/* Botón back (derecha) */
+.back-button {
+  background-color: #e76f51;
+  border: none;
+  cursor: pointer;  
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-detail label {
+  display: block;
+  font-weight: 500;
+  color: #333;
+}
+
+.info-detail label input[type="text"],
+.info-detail label input[type="number"] {
+  display: block;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.health-status label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #333;
+  transform: scale(1.1);
+
+}
+
+.about-me-text {
+  width: 100%; /* Ya ocupa todo el ancho disponible */
+  max-width: 600px; /* Limita el ancho máximo para que no sea muy grande en pantallas grandes */
+  min-width: 400px; /* Puedes ajustar para que no se haga muy pequeño */
+  min-height: 120px;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  box-sizing: border-box;
+  resize: none;
+}
+
+.about-me-text.readonly {
+  background-color: white;
+  cursor: default;
+  color: #333;
+}
+
+
+.loading,
+.error {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #888;
+}
