@@ -144,10 +144,6 @@
   transition: background-color 0.3s ease;
 }
 
-.edit-button-icon:hover {
-  background-color: #23867a;
-}
-
 .save-button {
   background-color: #23867a; /* verde azulado */
   color: white;
@@ -160,6 +156,28 @@
   display: inline-block;
   min-width: 60px;
   text-align: center;
+}
+
+.delete-button {
+  background-color: #2a9d8f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  margin-right: 1px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.heart-button-icon {
+  background-color: #2a9d8f;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin-right: 1px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .cancel-button {

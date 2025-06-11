@@ -9,7 +9,7 @@ import Footer from "../components/Footer";
 
 export default function PetList() {
   const location = useLocation();
-  const { user, logout } = useContext(AuthContext);
+  const { user, token, logout } = useContext(AuthContext);
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [pets, setPets] = useState([]);
@@ -68,7 +68,10 @@ export default function PetList() {
       }
 
       await api.post("/pets", formData, {
-        headers: { "Content-Type": "multipart/form-data" }
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}` 
+        }
       });
 
       setForm({
@@ -108,8 +111,21 @@ export default function PetList() {
   };
 
   const filteredPets = pets.filter((pet) => {
+    const petAge = Number(pet.age);
+
     if (filters.type && pet.type !== filters.type) return false;
-    if (filters.age && Number(pet.age) !== Number(filters.age)) return false;
+
+    if (filters.age) {
+      if (filters.age === "<1" && petAge >= 1) return false;
+      if (filters.age === ">15" && petAge <= 15) return false;
+      if (
+        filters.age !== "<1" &&
+        filters.age !== ">15" &&
+        petAge !== Number(filters.age)
+      )
+        return false;
+    }
+
     if (filters.size && pet.size !== filters.size) return false;
     if (filters.gender && pet.gender !== filters.gender) return false;
     if (
@@ -117,6 +133,7 @@ export default function PetList() {
       pet.province.toLowerCase() !== filters.province.toLowerCase()
     )
       return false;
+
     return true;
   });
 
@@ -184,34 +201,36 @@ export default function PetList() {
           <form className="filter-form" onSubmit={(e) => e.preventDefault()}>
             <select name="type" value={filters.type} onChange={handleFilterChange}>
               <option value="">All Animals</option>
-              <option value="Perro">Perro</option>
-              <option value="Gato">Gato</option>
-              <option value="Pájaro">Pájaro</option>
-              <option value="Conejo">Conejo</option>
-              <option value="Hurón">Hurón</option>
+              <option value="Perro">Dog</option>
+              <option value="Gato">Cat</option>
+              <option value="Pájaro">Bird</option>
+              <option value="Conejo">Rabbit</option>
+              <option value="Hurón">Ferret</option>
             </select>
 
             <select name="age" value={filters.age} onChange={handleFilterChange}>
               <option value="">All Ages</option>
+              <option value="<1">Less than 1 year</option>
               {[...Array(15)].map((_, i) => (
                 <option key={i + 1} value={i + 1}>
                   {i + 1} years
                 </option>
               ))}
+              <option value=">15">More than 15 years</option>
             </select>
 
             <select name="size" value={filters.size} onChange={handleFilterChange}>
               <option value="">All Sizes</option>
               <option value="Toy">Toy</option>
-              <option value="Pequeño">Pequeño</option>
-              <option value="Mediano">Mediano</option>
-              <option value="Grande">Grande</option>
+              <option value="Pequeño">Small</option>
+              <option value="Mediano">Medium</option>
+              <option value="Grande">Big</option>
             </select>
 
             <select name="gender" value={filters.gender} onChange={handleFilterChange}>
               <option value="">All Genders</option>
-              <option value="Macho">Macho</option>
-              <option value="Hembra">Hembra</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
             </select>
 
             <input
@@ -256,6 +275,7 @@ export default function PetList() {
                 <input
                   name="age"
                   type="number"
+                  step="any" 
                   placeholder="Age"
                   value={form.age}
                   onChange={handleChange}
@@ -290,8 +310,8 @@ export default function PetList() {
                 />
                 <select name="gender" value={form.gender} onChange={handleChange} required>
                   <option value="">Select Gender</option>
-                  <option value="Macho">Male</option>
-                  <option value="Hembra">Female</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
                 </select>
                 <input
                   name="province"
@@ -325,9 +345,9 @@ export default function PetList() {
                   <div className="pet-details">
                     <div className="pet-name-gender">
                       <strong className="pet-name">{pet.name}</strong>
-                      {pet.gender === "Macho" ? (
+                      {pet.gender === "Male" ? (
                         <img src="/assets/male.png" alt="Male" className="gender-icon" />
-                      ) : pet.gender === "Hembra" ? (
+                      ) : pet.gender === "Female" ? (
                         <img
                           src="/assets/female.png"
                           alt="Female"
@@ -336,7 +356,10 @@ export default function PetList() {
                       ) : null}
                     </div>
                     <div className="pet-info-age-size">
-                      {pet.age} years old, {pet.size}
+                      {pet.age < 1
+                        ? `${Math.round(pet.age * 12)} months old`
+                        : `${pet.age === 1 ? "1 year" : `${pet.age} years`} old`}
+                      , {pet.size}
                     </div>
                     <Link to={`/pet/${pet._id}`} className="adopt-button">
                       Adopt me

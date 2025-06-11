@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
-import { FaBars, FaTimes, FaArrowLeft } from "react-icons/fa";
+import { FaBars, FaTimes, FaArrowLeft, FaTrash, FaHeart} from "react-icons/fa";
 import { AuthContext } from "../context/AuthContext";
 import Footer from "../components/Footer";
 import "../styles/PetDetail.css";
 import { FaWrench } from "react-icons/fa";
+import { useAdoption } from "../context/AdoptionContext";
+
 
 
 export default function PetDetail() {
@@ -18,6 +20,10 @@ export default function PetDetail() {
   const [error, setError] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const { successfulAdoptions, incrementAdoptions } = useAdoption();
+
+  console.log("Successful adoptions:", successfulAdoptions);
+
 
   // Estados para campos editables
   const [generalInfo, setGeneralInfo] = useState({
@@ -123,11 +129,60 @@ export default function PetDetail() {
       const updatedPet = await response.json();
       setPet(updatedPet);
       setIsEditing(false);  // cerrar modo edición al guardar
-      alert("Pet info updated successfully!");
     } catch (error) {
       alert(`Failed to update pet info: ${error.message}`);
     }
   };
+
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(`http://localhost:4000/api/pets/${pet._id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        console.error("Error details:", data);
+        throw new Error("Failed to delete pet");
+      }
+
+      navigate("/pets");
+    } catch (error) {
+      console.error("Error deleting pet:", error);
+      alert("An error occurred while deleting the pet.");
+    }
+  };
+
+
+  const handleAdopt = async () => {
+    try {
+      const response = await fetch(`http://localhost:4000/api/pets/${pet._id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        console.error("Error details:", data);
+        throw new Error("Failed to delete pet");
+      }
+
+      console.log("Before increment:", successfulAdoptions);
+      incrementAdoptions();
+      console.log("After increment:", successfulAdoptions + 1);
+
+      navigate("/pets");
+    } catch (error) {
+      console.error("Error adopting pet:", error);
+      alert("An error occurred while processing the adoption.");
+    }
+  };
+
 
   if (loading) return <p className="loading">Loading...</p>;
   if (error) return <p className="error">Error: {error}</p>;
@@ -184,6 +239,28 @@ export default function PetDetail() {
 
       <div className="pet-detail-container" style={{ position: "relative" }}>
         <div className="top-right-buttons">
+            {canEdit && !isEditing && (
+            <button
+              className="heart-button-icon"
+              onClick={handleAdopt}
+              aria-label="Adopt pet"
+              type="button"
+            >
+              <FaHeart size={20} />
+            </button>
+          )}
+
+          {canEdit && !isEditing && (
+            <button
+              className="delete-button"
+              onClick={handleDelete}
+              aria-label="Delete pet"
+              type="button"
+            >
+              <FaTrash size={20} />
+            </button>
+          )}
+
           {canEdit && !isEditing && (
             <button
               className="edit-button-icon"
@@ -267,7 +344,13 @@ export default function PetDetail() {
                   </>
                 ) : (
                   <>
-                    <p>Age: {pet.age} years</p>
+                    <p>
+                      Age: {
+                        pet.age < 1 
+                          ? `${Math.round(pet.age * 12)} months` 
+                          : `${pet.age} years`
+                      }
+                    </p>
                     <p>Size: {pet.size}</p>
                     <p>Gender: {pet.gender}</p>
                     <p>Breed: {pet.breed}</p>
@@ -356,7 +439,6 @@ export default function PetDetail() {
                   </>
                 )}
               </div>
-
               {/* Botones Save / Cancel justo aquí */}
               {canEdit && isEditing && (
                 <div className="action-buttons" style={{ marginTop: "1rem" }}>
