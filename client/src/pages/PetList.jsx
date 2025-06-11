@@ -7,6 +7,8 @@ import api from "../services/api";
 import { AuthContext } from "../context/AuthContext";
 import Footer from "../components/Footer"; 
 import ChatPanel from "../components/ChatPanel";
+import { useAdoption } from "../context/AdoptionContext";
+
 
 
 export default function PetList() {
@@ -36,6 +38,8 @@ export default function PetList() {
   });
 
   const [showRegisterForm, setShowRegisterForm] = useState(false);
+    
+  const { successfulAdoptions } = useAdoption();
 
   useEffect(() => {
     fetchPets();
@@ -376,6 +380,13 @@ export default function PetList() {
           )}
         </section>
       </main>
+      <section className="adoption-section-list">
+          <div className="adoption-content">
+            <div className="adoption-number">{successfulAdoptions}</div>
+            <p className="adoption-subtext">Animals who found their forever homes.</p>
+            <h2 className="adoption-highlight">Every adoption is a new beginning filled with hope.</h2>
+          </div>
+        </section>
       <Footer />
     </>
   );

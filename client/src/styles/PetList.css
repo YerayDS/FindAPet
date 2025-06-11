@@ -389,3 +389,42 @@ body {
   font-weight: bold;
   transition: background-color 0.3s ease;
 }
+
+/* ADOPTION STATS SECTION */
+.adoption-section-list {
+  width: 100vw;
+  background-color: #ffe9d6;
+  padding: 60px 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.adoption-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.adoption-number {
+  font-size: 72px;
+  font-weight: bold;
+  color: #2a9d8f;
+  margin-bottom: 10px;
+}
+
+.adoption-subtext {
+  font-size: 30px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 25px;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  text-transform: capitalize;
+}
+
+.adoption-highlight {
+  font-size: 32px;
+  font-weight: 600;
+  color: #2c3e50;
+  font-style: italic;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
