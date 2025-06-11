@@ -6,7 +6,7 @@ const PetSchema = new mongoose.Schema(
     age: { type: Number, required: true },
     size: { type: String, required: true },
     type: { type: String, required: true },
-    breed: { type: String, required: true },        
+    breed: { type: String, required: true },
     birthday: { type: Date, required: true },
     gender: { type: String, required: true },
     province: { type: String, required: true },
@@ -17,8 +17,13 @@ const PetSchema = new mongoose.Schema(
     dewormed: { type: Boolean, default: false },
     healthy: { type: Boolean, default: false },
 
-    about: { type: String }, 
+    about: { type: String },
 
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User", 
+      required: true,
+    },
   },
   { timestamps: true }
 );

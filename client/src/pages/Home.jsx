@@ -4,6 +4,8 @@ import { FaBars, FaTimes } from "react-icons/fa";
 import { AuthContext } from "../context/AuthContext";
 import Footer from "../components/Footer"; 
 import "../styles/Home.css";
+import ChatPanel from "../components/ChatPanel";
+
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,6 +25,9 @@ export default function Home() {
                 <span className="navbar-hello">
                   Hello, <strong>{user.username || user.email}</strong>
                 </span>
+                {user && (
+                  <ChatPanel />
+                )}
                 <button
                   onClick={() => {
                     logout();

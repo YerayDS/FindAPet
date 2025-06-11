@@ -1,0 +1,252 @@
+/* components/ChatBox.module.css */
+
+.chatBox {
+  position: fixed;
+  bottom: 80px;
+  right: 24px;
+  width: 420px;       /* Antes 320px */
+  height: 500px;      /* Nueva altura */
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  z-index: 1000;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Separar elementos */
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: #333;
+  padding: 0 8px; /* Un poco de espacio a los lados */
+  min-height: 32px;
+  gap: 8px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.backButton {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+  padding: 4px;
+  flex-shrink: 0;
+}
+
+.backButton:hover {
+  color: #ff6961;
+}
+
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+  line-height: 1;
+  padding: 0 8px;
+  flex-shrink: 0;
+}
+
+.closeButton:hover {
+  color: #ff6961;
+}
+
+.userList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  flex-grow: 1; /* Que la lista ocupe el espacio disponible */
+}
+
+.userBox {
+  padding: 10px 16px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 16px;
+  color: #333;
+  user-select: none;
+}
+
+.userBox:hover {
+  background-color: #ddd;
+}
+
+.chatHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.messages {
+  flex-grow: 1; /* Que ocupe el espacio disponible */
+  overflow-y: auto;
+  border: 1px solid #eee;
+  padding: 8px;
+  margin-bottom: 12px;
+  background-color: #fafafa;
+  border-radius: 6px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.emptyMessage {
+  color: #999;
+  font-size: 14px;
+  text-align: center;
+}
+
+.message {
+  display: flex;
+  width: 100%; /* Ocupa todo el ancho para que justify-content funcione */
+  word-wrap: break-word;
+}
+
+.sent {
+  justify-content: flex-end; /* Empuja el mensaje a la derecha */
+  align-self: flex-end;
+}
+
+.received {
+  justify-content: flex-start; /* Empuja el mensaje a la izquierda */
+  align-self: flex-start;
+}
+
+.messageText {
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: 70%;
+  background-color: #e1ffc7; /* color base, será sobrescrito */
+  color: #000;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.sent .messageText {
+  background-color: #dcf8c6;
+  color: #000;
+  border-bottom-right-radius: 0; /* estilo burbuja lado derecho */
+}
+
+.received .messageText {
+  background-color: #f1f0f0;
+  color: #000;
+  border-bottom-left-radius: 0; /* estilo burbuja lado izquierdo */
+}
+
+.sendButton {
+  margin-top: 8px;
+  align-self: flex-end;
+  background-color: #25d366;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  user-select: none;
+}
+
+.sendButton:hover {
+  background-color: #1ebd5a;
+}
+
+.sendButton:disabled {
+  background-color: #a5d6a7;
+  cursor: not-allowed;
+}
+
+.chat-list {
+  position: fixed;
+  bottom: 80px;
+  right: 24px;
+  width: 300px;
+  max-height: 400px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow-y: auto;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 8px;
+  z-index: 1000;
+}
+
+.chat-list-item:hover {
+  background-color: #f0f0f0;
+}
+
+.userRow {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.userRow:hover {
+  background-color: #2a9d8f;
+  border-radius: 20px;
+  color: white;
+}
+
+.navchatButton {
+  /* Aquí va tu estilo actual para el botón de nav */
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.navchatButton:hover {
+  background-color: #0056b3;
+}
+
+.petdetailChatButton {
+  background-color: #4caf50; /* verde más visible */
+  color: white;
+  padding: 12px 24px;
+  font-size: 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.petdetailChatButton:hover {
+  background-color: #388e3c;
+}

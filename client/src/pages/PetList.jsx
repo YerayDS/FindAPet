@@ -6,6 +6,8 @@ import { getAllPets } from "../services/petService";
 import api from "../services/api";
 import { AuthContext } from "../context/AuthContext";
 import Footer from "../components/Footer"; 
+import ChatPanel from "../components/ChatPanel";
+
 
 export default function PetList() {
   const location = useLocation();
@@ -152,6 +154,9 @@ export default function PetList() {
                 <span className="navbar-hello">
                   Hello, <strong>{user.username || user.email}</strong>
                 </span>
+                {user && (
+                  <ChatPanel />
+                )}
                 <button
                   onClick={() => {
                     logout();

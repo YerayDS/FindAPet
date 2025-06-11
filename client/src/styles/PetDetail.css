@@ -105,6 +105,16 @@
   margin-top: 2rem;
 }
 
+.navchat-button{
+    background-color: #2a9d8f;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .chat-button {
   position: absolute;
   bottom: 30px;       /* separación del borde inferior del contenedor */
@@ -254,6 +264,23 @@
   color: #333;
 }
 
+.chat-toggle-button {
+  background-color: #2a9d8f;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.chat-panel-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 40px;
+  padding-left: 40%;
+}
+
 
 .loading,
 .error {
@@ -261,3 +288,4 @@
   font-size: 1.8rem;
   color: #888;
 }
+

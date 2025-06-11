@@ -6,6 +6,14 @@ import Footer from "../components/Footer";
 import "../styles/PetDetail.css";
 import { FaWrench } from "react-icons/fa";
 import { useAdoption } from "../context/AdoptionContext";
+import { MessageCircle } from "lucide-react"; 
+import ChatBox from "../components/ChatBox"; 
+import ChatContainer from "../components/ChatContainer";
+import ChatPanel from "../components/ChatPanel";
+
+
+
+
 
 
 
@@ -21,6 +29,11 @@ export default function PetDetail() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const { successfulAdoptions, incrementAdoptions } = useAdoption();
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chat, setChat] = useState(null);
+  const [selectedChat, setSelectedChat] = useState(null);
+
+
 
   console.log("Successful adoptions:", successfulAdoptions);
 
@@ -46,6 +59,9 @@ export default function PetDetail() {
   const canEdit = user?.role === "give_for_adoption";
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  const toggleChat = () => setChatOpen(prev => !prev);
+
 
   useEffect(() => {
     fetch(`http://localhost:4000/api/pets/${id}`)
@@ -183,6 +199,42 @@ export default function PetDetail() {
     }
   };
 
+  const handleStartChat = async () => {
+    if (chatOpen) {
+      // Si chat ya abierto, cerrar y limpiar
+      setChatOpen(false);
+      setSelectedChat(null);
+      return;
+    }
+
+    if (!token || !pet?.owner) return;
+
+    try {
+      const response = await fetch("http://localhost:4000/api/chats/get-or-create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ otherUserId: pet.owner }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "No se pudo crear el chat");
+      }
+
+      const chatData = await response.json();
+
+      console.log("Chat creado o recuperado:", chatData);
+      setSelectedChat(chatData);
+      setChatOpen(true);
+    } catch (error) {
+      console.error("Error iniciando chat:", error);
+      alert("Hubo un problema al iniciar el chat.");
+    }
+  };
+
 
   if (loading) return <p className="loading">Loading...</p>;
   if (error) return <p className="error">Error: {error}</p>;
@@ -199,8 +251,15 @@ export default function PetDetail() {
                 <span className="navbar-hello">
                   Hello, <strong>{user.username || user.email}</strong>
                 </span>
+
+                {user && (
+                  <ChatPanel />
+                )}
+
                 <button
                   onClick={() => {
+                    setChatOpen(false); 
+                    setChat(null);      
                     logout();
                     setMenuOpen(false);
                   }}
@@ -235,11 +294,19 @@ export default function PetDetail() {
             About
           </Link>
         </div>
+        {chatOpen && !selectedChat && (
+          <div>
+            <p>You don't have any open chat.</p>
+            <button onClick={() => setChatOpen(false)}>Close chat</button>
+          </div>
+        )}
+
+         
       </nav>
 
       <div className="pet-detail-container" style={{ position: "relative" }}>
         <div className="top-right-buttons">
-            {canEdit && !isEditing && (
+          {canEdit && !isEditing && pet.owner === user.id && (
             <button
               className="heart-button-icon"
               onClick={handleAdopt}
@@ -250,7 +317,7 @@ export default function PetDetail() {
             </button>
           )}
 
-          {canEdit && !isEditing && (
+          {canEdit && !isEditing && pet.owner === user.id && (
             <button
               className="delete-button"
               onClick={handleDelete}
@@ -261,7 +328,7 @@ export default function PetDetail() {
             </button>
           )}
 
-          {canEdit && !isEditing && (
+          {canEdit && !isEditing && pet.owner === user.id && (
             <button
               className="edit-button-icon"
               onClick={() => setIsEditing(true)}
@@ -491,9 +558,14 @@ export default function PetDetail() {
 
           
 
-          <button className="chat-button">Chat</button>
+          {user?.role === "adopt" && pet.owner !== user.id && (
+            <div className="chat-panel-wrapper">
+              <ChatPanel isInPetDetail={true} />
+            </div>
+          )}
         </div>
       </div>
+      
       <Footer />
     </>
   );
