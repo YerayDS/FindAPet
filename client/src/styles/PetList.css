@@ -3,6 +3,10 @@ body {
   padding: 0;
 }
 
+.petlist-full{
+  background-color: #fef9f5;
+}
+
 /* Navbar */
 .petlist-navbar {
   background-color: #fcbf97; /* naranja/ocre */

@@ -148,246 +148,248 @@ export default function PetList() {
 
   return (
     <>
-      {/* Navbar */}
-      <nav className={`petlist-navbar ${menuOpen ? "expanded" : ""}`}>
-        <div className="navbar-top">
-          <h1 className="logo">Pawfect Match 🐾</h1>
-          <div className="navbar-right">
-            {user ? (
-              <>
-                <span className="navbar-hello">
-                  Hello, <strong>{user.username || user.email}</strong>
-                </span>
-                {user && (
-                  <ChatPanel />
-                )}
-                <button
-                  onClick={() => {
-                    logout();
-                    setMenuOpen(false);
-                  }}
-                  className="logout-button"
-                >
-                  Log Out
-                </button>
-              </>
-            ) : (
-              <Link
-                to="/auth"
-                className="login-button"
-                onClick={() => setMenuOpen(false)}
-                state={{ from: location.pathname }}
-              >
-                Log In
-              </Link>
-            )}
-            <div className="menu-icon" onClick={toggleMenu}>
-              {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-            </div>
-          </div>
-        </div>
-        <div className="nav-menu">
-          <Link to="/" onClick={() => setMenuOpen(false)}>
-            Home
-          </Link>
-          <Link to="/about" onClick={() => setMenuOpen(false)}>
-            About
-          </Link>
-        </div>
-      </nav>
-
-      {/* Main content */}
-      <main className="main-content">
-        <div className="intro-text">
-          <h1 className="main-title">Find Your Perfect Companion</h1>
-          <h2 className="subtitle">
-            Start the journey to meet your new best friend today
-          </h2>
-        </div>
-
-        {/* Filtro */}
-        <section className="filter-section">
-          <form className="filter-form" onSubmit={(e) => e.preventDefault()}>
-            <select name="type" value={filters.type} onChange={handleFilterChange}>
-              <option value="">All Animals</option>
-              <option value="Perro">Dog</option>
-              <option value="Gato">Cat</option>
-              <option value="Pájaro">Bird</option>
-              <option value="Conejo">Rabbit</option>
-              <option value="Hurón">Ferret</option>
-            </select>
-
-            <select name="age" value={filters.age} onChange={handleFilterChange}>
-              <option value="">All Ages</option>
-              <option value="<1">Less than 1 year</option>
-              {[...Array(15)].map((_, i) => (
-                <option key={i + 1} value={i + 1}>
-                  {i + 1} years
-                </option>
-              ))}
-              <option value=">15">More than 15 years</option>
-            </select>
-
-            <select name="size" value={filters.size} onChange={handleFilterChange}>
-              <option value="">All Sizes</option>
-              <option value="Toy">Toy</option>
-              <option value="Pequeño">Small</option>
-              <option value="Mediano">Medium</option>
-              <option value="Grande">Big</option>
-            </select>
-
-            <select name="gender" value={filters.gender} onChange={handleFilterChange}>
-              <option value="">All Genders</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-            </select>
-
-            <input
-              type="text"
-              name="province"
-              placeholder="Province"
-              value={filters.province}
-              onChange={handleFilterChange}
-            />
-
-            <button type="button" onClick={clearFilters}>
-              Clear Filters
-            </button>
-          </form>
-        </section>
-
-        {/* Botón para abrir formulario SOLO SI user.role es give_for_adoption */}
-        {user?.role === "give_for_adoption" && (
-          <div className="register-button-container">
-            <button className="register-button" onClick={openRegisterForm}>
-              Register New Pet
-            </button>
-          </div>
-        )}
-
-        {/* Modal con formulario */}
-        {showRegisterForm && (
-          <div className="modal-overlay">
-            <div className="modal-content register-section pet-list-container">
-              <button className="modal-close-btn" onClick={closeRegisterForm}>
-                &times;
-              </button>
-              <h2>Register a New Pet</h2>
-              <form className="pet-form" onSubmit={handleSubmit}>
-                <input
-                  name="name"
-                  placeholder="Name"
-                  value={form.name}
-                  onChange={handleChange}
-                  required
-                />
-                <input
-                  name="age"
-                  type="number"
-                  step="any" 
-                  placeholder="Age"
-                  value={form.age}
-                  onChange={handleChange}
-                  required
-                />
-                <select name="size" value={form.size} onChange={handleChange} required>
-                  <option value="">Select Size</option>
-                  <option value="Toy">Toy</option>
-                  <option value="Pequeño">Small</option>
-                  <option value="Mediano">Medium</option>
-                  <option value="Grande">Big</option>
-                </select>
-                <select name="type" value={form.type} onChange={handleChange} required>
-                  <option value="">Select Animal Type</option>
-                  <option value="Perro">Dog</option>
-                  <option value="Gato">Cat</option>
-                  <option value="Pájaro">Bird</option>
-                  <option value="Conejo">Rabbit</option>
-                  <option value="Hurón">Ferret</option>
-                </select>
-                <input
-                  name="breed"
-                  placeholder="Breed"
-                  value={form.breed}
-                  onChange={handleChange}
-                />
-                <input
-                  name="birthday"
-                  type="date"
-                  value={form.birthday}
-                  onChange={handleChange}
-                />
-                <select name="gender" value={form.gender} onChange={handleChange} required>
-                  <option value="">Select Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-                <input
-                  name="province"
-                  placeholder="Province"
-                  value={form.province}
-                  onChange={handleChange}
-                />
-                <input type="file" name="photo" accept="image/*" onChange={handleChange} />
-                <button type="submit">Add Pet</button>
-              </form>
-            </div>
-          </div>
-        )}
-
-        {/* Lista de mascotas filtradas */}
-        <section className="pet-list-section">
-          <h3>Pet List</h3>
-          {filteredPets.length === 0 ? (
-            <p>No pets found matching the filters.</p>
-          ) : (
-            <ul className="pet-list-grid">
-              {filteredPets.map((pet) => (
-                <li key={pet._id} className="pet-card">
-                  {pet.photo && (
-                    <img
-                      src={`http://localhost:4000${pet.photo}`}
-                      alt={pet.name}
-                      className="pet-photo-large"
-                    />
+    <div className="petlist-full">
+        {/* Navbar */}
+        <nav className={`petlist-navbar ${menuOpen ? "expanded" : ""}`}>
+          <div className="navbar-top">
+            <h1 className="logo">Pawfect Match 🐾</h1>
+            <div className="navbar-right">
+              {user ? (
+                <>
+                  <span className="navbar-hello">
+                    Hello, <strong>{user.username || user.email}</strong>
+                  </span>
+                  {user && (
+                    <ChatPanel />
                   )}
-                  <div className="pet-details">
-                    <div className="pet-name-gender">
-                      <strong className="pet-name">{pet.name}</strong>
-                      {pet.gender === "Male" ? (
-                        <img src="/assets/male.png" alt="Male" className="gender-icon" />
-                      ) : pet.gender === "Female" ? (
-                        <img
-                          src="/assets/female.png"
-                          alt="Female"
-                          className="gender-icon"
-                        />
-                      ) : null}
-                    </div>
-                    <div className="pet-info-age-size">
-                      {pet.age < 1
-                        ? `${Math.round(pet.age * 12)} months old`
-                        : `${pet.age === 1 ? "1 year" : `${pet.age} years`} old`}
-                      , {pet.size}
-                    </div>
-                    <Link to={`/pet/${pet._id}`} className="adopt-button">
-                      Adopt me
-                    </Link>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
-      </main>
-      <section className="adoption-section-list">
-          <div className="adoption-content">
-            <div className="adoption-number">{successfulAdoptions}</div>
-            <p className="adoption-subtext">Animals who found their forever homes.</p>
-            <h2 className="adoption-highlight">Every adoption is a new beginning filled with hope.</h2>
+                  <button
+                    onClick={() => {
+                      logout();
+                      setMenuOpen(false);
+                    }}
+                    className="logout-button"
+                  >
+                    Log Out
+                  </button>
+                </>
+              ) : (
+                <Link
+                  to="/auth"
+                  className="login-button"
+                  onClick={() => setMenuOpen(false)}
+                  state={{ from: location.pathname }}
+                >
+                  Log In
+                </Link>
+              )}
+              <div className="menu-icon" onClick={toggleMenu}>
+                {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+              </div>
+            </div>
           </div>
-        </section>
-      <Footer />
+          <div className="nav-menu">
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              Home
+            </Link>
+            <Link to="/about" onClick={() => setMenuOpen(false)}>
+              About
+            </Link>
+          </div>
+        </nav>
+
+        {/* Main content */}
+        <main className="main-content">
+          <div className="intro-text">
+            <h1 className="main-title">Find Your Perfect Companion</h1>
+            <h2 className="subtitle">
+              Start the journey to meet your new best friend today
+            </h2>
+          </div>
+
+          {/* Filtro */}
+          <section className="filter-section">
+            <form className="filter-form" onSubmit={(e) => e.preventDefault()}>
+              <select name="type" value={filters.type} onChange={handleFilterChange}>
+                <option value="">All Animals</option>
+                <option value="Perro">Dog</option>
+                <option value="Gato">Cat</option>
+                <option value="Pájaro">Bird</option>
+                <option value="Conejo">Rabbit</option>
+                <option value="Hurón">Ferret</option>
+              </select>
+
+              <select name="age" value={filters.age} onChange={handleFilterChange}>
+                <option value="">All Ages</option>
+                <option value="<1">Less than 1 year</option>
+                {[...Array(15)].map((_, i) => (
+                  <option key={i + 1} value={i + 1}>
+                    {i + 1} years
+                  </option>
+                ))}
+                <option value=">15">More than 15 years</option>
+              </select>
+
+              <select name="size" value={filters.size} onChange={handleFilterChange}>
+                <option value="">All Sizes</option>
+                <option value="Toy">Toy</option>
+                <option value="Pequeño">Small</option>
+                <option value="Mediano">Medium</option>
+                <option value="Grande">Big</option>
+              </select>
+
+              <select name="gender" value={filters.gender} onChange={handleFilterChange}>
+                <option value="">All Genders</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+
+              <input
+                type="text"
+                name="province"
+                placeholder="Province"
+                value={filters.province}
+                onChange={handleFilterChange}
+              />
+
+              <button type="button" onClick={clearFilters}>
+                Clear Filters
+              </button>
+            </form>
+          </section>
+
+          {/* Botón para abrir formulario SOLO SI user.role es give_for_adoption */}
+          {user?.role === "give_for_adoption" && (
+            <div className="register-button-container">
+              <button className="register-button" onClick={openRegisterForm}>
+                Register New Pet
+              </button>
+            </div>
+          )}
+
+          {/* Modal con formulario */}
+          {showRegisterForm && (
+            <div className="modal-overlay">
+              <div className="modal-content register-section pet-list-container">
+                <button className="modal-close-btn" onClick={closeRegisterForm}>
+                  &times;
+                </button>
+                <h2>Register a New Pet</h2>
+                <form className="pet-form" onSubmit={handleSubmit}>
+                  <input
+                    name="name"
+                    placeholder="Name"
+                    value={form.name}
+                    onChange={handleChange}
+                    required
+                  />
+                  <input
+                    name="age"
+                    type="number"
+                    step="any" 
+                    placeholder="Age"
+                    value={form.age}
+                    onChange={handleChange}
+                    required
+                  />
+                  <select name="size" value={form.size} onChange={handleChange} required>
+                    <option value="">Select Size</option>
+                    <option value="Toy">Toy</option>
+                    <option value="Pequeño">Small</option>
+                    <option value="Mediano">Medium</option>
+                    <option value="Grande">Big</option>
+                  </select>
+                  <select name="type" value={form.type} onChange={handleChange} required>
+                    <option value="">Select Animal Type</option>
+                    <option value="Perro">Dog</option>
+                    <option value="Gato">Cat</option>
+                    <option value="Pájaro">Bird</option>
+                    <option value="Conejo">Rabbit</option>
+                    <option value="Hurón">Ferret</option>
+                  </select>
+                  <input
+                    name="breed"
+                    placeholder="Breed"
+                    value={form.breed}
+                    onChange={handleChange}
+                  />
+                  <input
+                    name="birthday"
+                    type="date"
+                    value={form.birthday}
+                    onChange={handleChange}
+                  />
+                  <select name="gender" value={form.gender} onChange={handleChange} required>
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                  <input
+                    name="province"
+                    placeholder="Province"
+                    value={form.province}
+                    onChange={handleChange}
+                  />
+                  <input type="file" name="photo" accept="image/*" onChange={handleChange} />
+                  <button type="submit">Add Pet</button>
+                </form>
+              </div>
+            </div>
+          )}
+
+          {/* Lista de mascotas filtradas */}
+          <section className="pet-list-section">
+            <h3>Pet List</h3>
+            {filteredPets.length === 0 ? (
+              <p>No pets found matching the filters.</p>
+            ) : (
+              <ul className="pet-list-grid">
+                {filteredPets.map((pet) => (
+                  <li key={pet._id} className="pet-card">
+                    {pet.photo && (
+                      <img
+                        src={`http://localhost:4000${pet.photo}`}
+                        alt={pet.name}
+                        className="pet-photo-large"
+                      />
+                    )}
+                    <div className="pet-details">
+                      <div className="pet-name-gender">
+                        <strong className="pet-name">{pet.name}</strong>
+                        {pet.gender === "Male" ? (
+                          <img src="/assets/male.png" alt="Male" className="gender-icon" />
+                        ) : pet.gender === "Female" ? (
+                          <img
+                            src="/assets/female.png"
+                            alt="Female"
+                            className="gender-icon"
+                          />
+                        ) : null}
+                      </div>
+                      <div className="pet-info-age-size">
+                        {pet.age < 1
+                          ? `${Math.round(pet.age * 12)} months old`
+                          : `${pet.age === 1 ? "1 year" : `${pet.age} years`} old`}
+                        , {pet.size}
+                      </div>
+                      <Link to={`/pet/${pet._id}`} className="adopt-button">
+                        Adopt me
+                      </Link>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+        </main>
+        <section className="adoption-section-list">
+            <div className="adoption-content">
+              <div className="adoption-number">{successfulAdoptions}</div>
+              <p className="adoption-subtext">Animals who found their forever homes.</p>
+              <h2 className="adoption-highlight">Every adoption is a new beginning filled with hope.</h2>
+            </div>
+          </section>
+        <Footer />
+      </div>
     </>
   );
 }
