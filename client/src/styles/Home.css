@@ -138,7 +138,7 @@ body {
 }
 
 .adoption-section {
-  background: #ffe9d6;
+  background: #fff6ec;
   background-size: cover;
   padding: 3rem 2rem 2rem 2rem;
   margin: 2rem 0 0 0; /* eliminamos el margen inferior */
@@ -159,21 +159,323 @@ body {
   text-shadow: 0 1px 3px rgba(0,0,0,0.1); /* sombra muy sutil para dar profundidad */
 }
 
-.adoption-image {
-  width: 100%;
-  max-width: 900px;
-  height: auto;
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-  margin-bottom: 1.5rem;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .adoption-stats {
   font-size: 1.8rem; /* más grande */
   font-weight: 500;
   color: #7b3e00;
   margin-top: 0; /* para que no tenga espacio extra arriba */
+}
+
+.adoption-quote-line {
+  font-size: 4rem;
+  font-weight: 800;
+  margin: 0;
+  color: #264653;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  line-height: 1.2;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.adoption-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  margin: 2rem 0;
+  display: block;
+}
+
+.adoption-stats.emphasized {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 1rem;
+  color: #264653;
+  font-family: 'Arial Black', 'Segoe UI', sans-serif;
+  line-height: 1.3;
+  margin-top: 2rem;
+}
+
+/* PET TO SAVE SECTION */
+.featured-pet-section {
+  margin: 3rem auto;
+  max-width: 1200px; /* más ancho para permitir espacio a ambos lados */
+  padding: 1rem;
+  background-color: #fef9f1;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.featured-pet-section h3 {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.featured-pet-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 1rem;
+  flex-wrap: wrap; /* Responsivo */
+}
+
+.pet-cardh {
+  flex: 3 1 0; /* Para que crezca 3 veces más que el texto */
+  max-width: none; /* Quita límite para que flex funcione */
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fffdfa;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.pet-photo-largeh {
+  flex: 0 0 75%; /* No crece ni se encoge, ocupa 75% */
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  min-height: 0; /* para flexbox */
+}
+
+.pet-detailsh {
+  flex: 0 0 25%; /* Ocupa 25% */
+  overflow: hidden;
+  font-size: 0.9rem;
+  opacity: 0.85;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra verticalmente */
+  align-items: center;     /* Centra horizontalmente */
+  text-align: center;      /* Asegura que el texto interno se centre */
+}
+
+.pet-name-gender {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.gender-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.pet-info-age-size {
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+
+.featured-pet-text {
+  flex: 2 1 0; /* Crece 2 veces menos que la tarjeta */
+  max-width: none; /* Para que flex controle el ancho */
+  padding: 1rem;
+  text-align: center;
+}
+
+.featured-pet-text h2 {
+  font-size: 2.5rem;
+  color: #264653;
+  margin-bottom: 1rem;
+}
+
+.featured-pet-text p {
+  font-size: 1.45rem; /* Más grande */
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.featured-pet-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.featured-pet-section.visible {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+/************************************** WHY ADOPT **************************************/
+
+.why-adopt-background {
+  background-color: #fef9f1;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  padding-bottom: 30px;
+}
+
+.why-adopt-section {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 1rem;
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fef9f1;
+  margin-bottom: 0px;
+}
+
+.why-adopt-title {
+  font-size: 3rem;
+  color: #264653;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.why-adopt-subtitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  color: #555;
+  font-style: italic;
+}
+
+.why-adopt-grid {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.why-adopt-column {
+  flex: 1 1 350px;
+  background-color: #fffdfa;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  text-align: left;
+  min-width: 350px;
+}
+
+.why-adopt-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.why-adopt-column-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #264653;
+  text-align: center;
+}
+
+.why-adopt-points {
+  list-style-type: disc;
+  padding-left: 1.2rem;
+  color: #444;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.why-adopt-point {
+  margin-bottom: 0.5rem;
+}
+
+.why-adopt-column ul {
+  padding: 0;
+  margin-top: 1rem;
+  list-style: none;
+}
+
+/************************************** RESCUERS **************************************/
+
+.embajadores {
+    text-align: center;
+    padding: 40px 20px 80px;
+    background-color: #fef9f1; 
+}
+
+.embajadores__title {
+    color: #264653;
+    margin-bottom: 90px;
+    font-family: 'Bile';
+    font-weight: bold;
+    font-size: 3em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.embajadores__grid {
+    display: flex;
+    align-items: center; 
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 60px; 
+}
+
+.embajadores__item {
+    position: relative;
+    width: 320px; 
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    border-radius: 4px;
+    background-color: #fffdfa;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+    padding: 10px;
+    transition: transform 0.3s ease; 
+}
+
+
+.embajadores__item:hover {
+    transform: scale(1.05);
+}
+
+.embajadores__item-foto-container {
+    position: relative;
+    top: -70px; 
+}
+
+.embajadores__item-foto {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.embajadores__item-info {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: black;
+    border-radius: 10px;
+    width: 90%;
+    font-size: 0.9em;
+    top: 80px;
+}
+
+.embajadores__item-info-name {
+    color: #333;
+    font-family: 'Bile';
+    font-weight: bold;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.embajadores__item-info-description {
+    font-size: 1.2em;
+    line-height: 1.4;
+    font-family: 'Times New Roman', Times, serif;
+    max-width: 90%;  
+    margin: 0 auto;  
+    padding: 0 10px; 
 }
