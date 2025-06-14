@@ -1,4 +1,3 @@
-// routes/chatRoutes.js
 import express from "express";
 import { getOrCreateChat } from "../controllers/chatController.js";
 import { authenticateToken } from "../middleware/authMiddleware.js";

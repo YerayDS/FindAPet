@@ -10,7 +10,7 @@ import {
   getPetById,
 } from "../controllers/petController.js";
 
-import { authenticateToken } from "../middleware/authMiddleware.js";  // Importa el middleware
+import { authenticateToken } from "../middleware/authMiddleware.js";  
 
 const router = express.Router();
 
@@ -31,15 +31,14 @@ router.get("/", getAllPets);
 router.get("/:id", getPetById);
 
 
-// Ejemplo de ruta protegida (ejemplo simple)
 router.get("/protected", authenticateToken, (req, res) => {
   res.json({ message: "This route is protected", user: req.user });
 });
 
-router.post("/", authenticateToken, upload.single("photo"), createPet); // Protección en ruta POST para crear mascota
+router.post("/", authenticateToken, upload.single("photo"), createPet); 
 
-router.put("/:id", authenticateToken, updatePet); // Protegemos editar mascota
+router.put("/:id", authenticateToken, updatePet); 
 
-router.delete("/:id", authenticateToken, deletePet); // Protegemos borrar mascota
+router.delete("/:id", authenticateToken, deletePet); 
 
 export default router;

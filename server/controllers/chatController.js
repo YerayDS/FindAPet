@@ -1,4 +1,3 @@
-// controllers/chatController.js
 import Chat from "../models/Chat.js";
 
 export const getOrCreateChat = async (req, res) => {

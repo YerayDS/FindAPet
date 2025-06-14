@@ -1,11 +1,10 @@
 import express from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import User from "../models/User.js"; // Asumiendo que tienes un modelo User para MongoDB
+import User from "../models/User.js";
 
 const router = express.Router();
 
-// Register
 router.post("/register", async (req, res) => {
   const { email, username, password, role } = req.body;
   if (!email || !username || !password || !role) {
@@ -27,7 +26,6 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// Login
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 

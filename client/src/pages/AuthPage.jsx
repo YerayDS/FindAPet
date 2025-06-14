@@ -65,7 +65,6 @@ export default function AuthPage() {
   return (
     <div className="auth-page">
       <div className="auth-container">
-        {/* Botón para cerrar y volver */}
         <button
           className="close-auth-button"
           onClick={() => navigate(from)}

@@ -7,9 +7,9 @@ body {
   background-color: #fef9f5;
 }
 
-/* Navbar */
+/************************************** NAV BAR SECTION **************************************/
 .petlist-navbar {
-  background-color: #fcbf97; /* naranja/ocre */
+  background-color: #fcbf97; 
   position: fixed;
   width: 100%;
   top: 0;
@@ -18,17 +18,17 @@ body {
   overflow: hidden;
   transition: max-height 0.4s ease;
   z-index: 1000;
-  box-shadow: none; /* sin sombra */
+  box-shadow: none; 
 }
 
 .petlist-navbar.expanded {
-  max-height: 300px; /* suficiente para mostrar menú */
+  max-height: 300px;
 }
 
 .petlist-navbar .navbar-right {
   display: flex;
   align-items: center;
-  gap: 2.5rem; /* separación entre login y hamburguesa */
+  gap: 2.5rem; 
 }
 
 .petlist-navbar .login-button {
@@ -50,7 +50,6 @@ body {
   user-select: none;
 }
 
-/* Contenedor top igual a home */
 .petlist-navbar .navbar-top {
   display: flex;
   justify-content: space-between;
@@ -58,7 +57,6 @@ body {
   padding: 0 2rem;
 }
 
-/* Logo igual a home */
 .petlist-navbar .logo {
   font-size: 1.8rem;
   font-weight: bold;
@@ -69,7 +67,6 @@ body {
   position: static;
 }
 
-/* Icono hamburguesa */
 .petlist-navbar .menu-icon {
   cursor: pointer;
   color: #333;
@@ -107,22 +104,22 @@ body {
 }
 
 .main-content {
-  margin-top: 60px; /* espacio para navbar fijo */
+  margin-top: 60px; 
   padding: 2rem;
   text-align: center;
 }
 
 .main-title {
-  font-size: 3.9rem; /* muy grande para el título principal */
+  font-size: 3.9rem; 
   font-weight: 800;
-  color: #264653; /* azul oscuro elegante */
+  color: #264653;
   margin-bottom: 0.5rem;
 }
 
 .subtitle {
-  font-size: 2.0rem; /* grande, pero menor que el título */
+  font-size: 2.0rem;
   font-weight: 600;
-  color: #264653; /* azul oscuro elegante */
+  color: #264653; 
 }
 
 .register-section {
@@ -135,7 +132,6 @@ body {
   color: #222;
 }
 
-/* Form y lista */
 .pet-list-container {
   max-width: 900px;
   margin: 2rem auto;
@@ -151,7 +147,14 @@ body {
   color: #264653;
 }
 
-/* Form */
+.pet-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+}
+
 .pet-form input,
 .pet-form select,
 .pet-form button {
@@ -179,9 +182,9 @@ body {
   color: #000;
 }
 
-/* LIST SECTION */
+/************************************** LIST SECTION **************************************/
 .pet-list-section h3 {
-  font-size: 2.8rem; /* tamaño grande */
+  font-size: 2.8rem; 
   color: #264653;
   margin-bottom: 1rem;
   font-weight: 700;
@@ -189,7 +192,7 @@ body {
 
 .pet-list-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* siempre 3 columnas iguales */
+  grid-template-columns: repeat(3, 1fr); 
   gap: 2rem;
   padding: 0;
   list-style: none;
@@ -199,7 +202,7 @@ body {
 
 .pet-card {
   width: 100%;
-  height: 480px;      /* más alta que ancha */
+  height: 480px;     
   background-color: #ffe6d0;
   display: flex;
   flex-direction: column;
@@ -222,7 +225,7 @@ body {
 .pet-details {
   padding: 1rem;
   height: 35%;
-  flex-grow: 1; /* ocupa espacio restante */
+  flex-grow: 1; 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -255,7 +258,6 @@ body {
   font-size: 1.1rem;
 }
 
-/* Estilos para la sección de filtros */
 .filter-section {
   max-width: 1200px;
   margin: 2rem auto 3rem;
@@ -311,11 +313,7 @@ body {
   background-color: #d65a3f;
 }
 
-/* ============================= */
-/* MODAL Y BOTÓN PARA REGISTRAR   */
-/* ============================= */
-
-/* Contenedor para el botón que abre el modal */
+/************************************** REGISTER SECTION **************************************/
 .register-button-container {
   text-align: center;
   margin: 2rem 0;
@@ -336,7 +334,6 @@ body {
   background-color: #1f3b43;
 }
 
-/* Fondo oscuro semitransparente para modal */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -350,7 +347,6 @@ body {
   z-index: 1000;
 }
 
-/* Caja blanca del modal */
 .modal-content {
   background-color: #fff;
   border-radius: 12px;
@@ -363,7 +359,6 @@ body {
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-/* Botón de cerrar modal ("×") */
 .modal-close-btn {
   position: absolute;
   top: 0.6rem;
@@ -394,7 +389,7 @@ body {
   transition: background-color 0.3s ease;
 }
 
-/* ADOPTION STATS SECTION */
+/************************************** ADOPTION STATS SECTION **************************************/
 .adoption-section-list {
   width: 100vw;
   background-color: #ffe9d6;
@@ -431,4 +426,98 @@ body {
   color: #2c3e50;
   font-style: italic;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+
+/************************************** RESPONSIVE TABLET SECTION **************************************/
+
+@media screen and (min-width: 701px) and (max-width: 1024px) {
+  .main-title {
+    font-size: 2.8rem;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+  }
+
+  .filter-form select,
+  .filter-form input[type="text"],
+  .filter-form button {
+    max-width: 180px;
+    font-size: 1rem;
+  }
+
+  /**/
+  .pet-list-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /**/
+  .adoption-section-list {
+    padding: 40px 15px;
+  }
+
+  .adoption-number {
+    font-size: 56px;
+  }
+
+  .adoption-subtext {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .adoption-highlight {
+    font-size: 26px;
+  }
+}
+
+/************************************** RESPONSIVE MOBILE SECTION **************************************/
+
+@media screen and (max-width: 700px) {
+  .main-title {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .filter-form {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .filter-form select,
+  .filter-form input[type="text"],
+  .filter-form button {
+    max-width: 100%;
+    font-size: 1rem;
+  }
+
+  .filter-form button {
+    padding: 0.8rem 0;
+  }
+
+  /**/
+  .pet-list-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /**/
+  .adoption-section-list {
+    padding: 30px 10px;
+  }
+
+  .adoption-number {
+    font-size: 42px;
+  }
+
+  .adoption-subtext {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .adoption-highlight {
+    font-size: 20px;
+  }
 }

@@ -1,7 +1,8 @@
 .pet-detail-container {
-  margin-top: 5rem; /* o ajusta según la altura de tu navbar */
-  margin-bottom: 3rem; /* o ajusta según la altura de tu navbar */
+  margin-top: 5rem; 
+  margin-bottom: 3rem; 
   max-width: 1200px;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
   background-color: #fff8f0;
@@ -12,11 +13,13 @@
   gap: 2rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
+
 }
 
 .pet-photo {
-  width: 35rem;         /* Aproximadamente 288px si 1rem = 16px */
-  height: 35rem;
+  width: 50%;
+  max-width: 35rem; 
+  height: auto;     
   border-radius: 0.75rem;
   object-fit: cover;
   box-shadow: 0 0.25rem 0.9375rem rgba(0, 0, 0, 0.15);
@@ -24,81 +27,61 @@
 }
 
 .pet-info {
+  width: 50%;
+  max-width: 35rem;
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Alinea todo a la izquierda */
+  align-items: flex-start;
   justify-content: flex-start;
 }
 
 .pet-name {
-  font-size: 2.5rem;
+  font-size: clamp(0.3rem, 2.2vw, 2.5rem);
   color: #e76f51;
-  margin-bottom: 1rem; /* Menos separación con los detalles */
-  text-align: left; /* Asegura que esté alineado a la izquierda */
-  width: 100%; /* Opcional, ayuda a que quede bien alineado */
+  margin-bottom: 1rem;
+  text-align: left;
+  width: 100%;
 }
 
 .pet-detail {
   display: flex;
   flex-grow: 0;
   flex-direction: column;
-  align-items: flex-start; /* Alinea todo a la izquierda */
+  align-items: flex-start; 
 }
 
+
 .info-title {
-  font-size: 1.5rem;
+  font-size: clamp(0.1rem, 1.6vw, 1.5rem);
   color: #555;
   margin-bottom: 0.5rem;
   font-weight: bold;
 }
 
 .pet-detail p {
-  font-size: 1.4rem;
-  margin: 0.3rem 0; /* Muy poco espacio entre líneas */
-  text-align: left; /* Alineado a la izquierda */
+  font-size: clamp(0.1rem, 1.4vw, 1.4rem);
+  margin: 0.3rem 0;
+  text-align: left;
   margin-left: 20px;
-
 }
 
-
-.about-me-text {
-  resize: none;  /* evita que se pueda cambiar el tamaño */
-  width: 100%;
-  min-height: 120px;
-  padding: 8px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-family: inherit;
-  box-sizing: border-box;
-}
 
 
 .pet-detail, .health-status {
-  flex: 1 1 250px; /* flexible pero mínimo 250px */
+  font-size: clamp(0.1rem, 1.4vw, 1.4rem);
 }
 
 .health-status .info-detail p {
-  /* Puedes agregar estilos específicos si quieres */
   margin: 0.3rem 0;
+  font-size: clamp(0.1rem, 1.4vw, 1.4rem);
 }
 
 .info-columns {
   display: flex;
-  gap: 2rem;         /* separación entre columnas */
-  flex-wrap: nowrap; /* fuerza que estén en fila, no en columna */
+  gap: 2rem;         
+  flex-wrap: nowrap; 
   justify-content: flex-start;
-}
-
-.pet-detail, .health-status {
-  flex: 1;            /* ocupan espacio igual */
-  min-width: 250px;   /* para evitar que se achiquen demasiado */
-}
-
-.health-status .info-detail p,
-.pet-detail .info-detail p {
-  margin: 0.3rem 0;
 }
 
 .about-me-section {
@@ -117,7 +100,7 @@
 
 .chat-button {
   position: absolute;
-  bottom: 30px;       /* separación del borde inferior del contenedor */
+  bottom: 30px;     
   left: 75%;
   transform: translateX(-50%);
   padding: 0.6rem 1.5rem;
@@ -136,13 +119,12 @@
   top: 10px;
   right: 10px;
   display: flex;
-  gap: 8px; /* espacio entre botones */
+  gap: 8px; 
   z-index: 10;
 }
 
-/* Botón edit (izquierda) */
 .edit-button-icon {
-  background-color: #2a9d8f; /* azul verdoso */
+  background-color: #2a9d8f; 
   border: none;
   cursor: pointer;
   color: white;
@@ -155,7 +137,7 @@
 }
 
 .save-button {
-  background-color: #23867a; /* verde azulado */
+  background-color: #23867a; 
   color: white;
   border: none;
   padding: 5px 5px;
@@ -191,7 +173,7 @@
 }
 
 .cancel-button {
-  background-color: #d9534f; /* rojo */
+  background-color: #d9534f;
   color: white;
   border: none;
   padding: 5px 5px;
@@ -203,7 +185,6 @@
   text-align: center;
 }
 
-/* Botón back (derecha) */
 .back-button {
   background-color: #e76f51;
   border: none;
@@ -245,15 +226,13 @@
 }
 
 .about-me-text {
-  width: 100%; /* Ya ocupa todo el ancho disponible */
-  max-width: 600px; /* Limita el ancho máximo para que no sea muy grande en pantallas grandes */
-  min-width: 400px; /* Puedes ajustar para que no se haga muy pequeño */
+  width: clamp(25px, 35vw, 500px); 
+  font-size: clamp(0.9rem, 1.5vw, 1.2rem); 
   min-height: 120px;
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-family: inherit;
-  font-size: 1rem;
   box-sizing: border-box;
   resize: none;
 }
@@ -289,3 +268,53 @@
   color: #888;
 }
 
+/************************************** RESPONSIVE SECTION **************************************/
+
+/* MOBILE RESPONSIVE */
+@media screen and (max-width: 700px) {
+  .pet-detail-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pet-photo {
+    width: 90%;
+    max-width: 100%;
+    margin-top: 40px;
+  }
+
+  .pet-info {
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+ .pet-name {
+    font-size: clamp(2.5rem, 6vw, 3rem);
+    text-align: center;
+    width: 100%;
+  }
+
+  .pet-detail p,
+  .health-status p,
+  .info-title {
+    font-size: clamp(1rem, 2vw, 2rem); 
+  }
+
+  .info-detail p,
+  .info-detail label,
+  .info-detail input,
+  .info-detail select {
+      font-size: clamp(1rem, 2vw, 2rem) !important; 
+  }
+
+  .chat-panel-wrapper {
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+    margin-top: 40px;
+    padding-left: 0;
+    width: 100%;            
+    height: auto;          
+  }
+}

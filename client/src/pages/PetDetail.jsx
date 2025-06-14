@@ -7,8 +7,6 @@ import "../styles/PetDetail.css";
 import { FaWrench } from "react-icons/fa";
 import { useAdoption } from "../context/AdoptionContext";
 import { MessageCircle } from "lucide-react"; 
-import ChatBox from "../components/ChatBox"; 
-import ChatContainer from "../components/ChatContainer";
 import ChatPanel from "../components/ChatPanel";
 
 
@@ -38,7 +36,6 @@ export default function PetDetail() {
   console.log("Successful adoptions:", successfulAdoptions);
 
 
-  // Estados para campos editables
   const [generalInfo, setGeneralInfo] = useState({
     age: "",
     size: "",
@@ -71,7 +68,6 @@ export default function PetDetail() {
       })
       .then((data) => {
         setPet(data);
-        // Inicializamos estados editables con los datos recibidos
         setGeneralInfo({
           age: data.age || "",
           size: data.size || "",
@@ -94,20 +90,17 @@ export default function PetDetail() {
       });
   }, [id]);
 
-  // Función para manejar cambios en generalInfo
   const handleGeneralInfoChange = (e) => {
     const { name, value } = e.target;
     setGeneralInfo((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Función para manejar cambios en healthStatus (checkboxes)
   const handleHealthChange = (e) => {
     const { name, checked } = e.target;
     setHealthStatus((prev) => ({ ...prev, [name]: checked }));
   };
 
-  // Función para guardar cambios en backend
-  const [editedPet, setEditedPet] = useState({}); // Para guardar los cambios del formulario
+  const [editedPet, setEditedPet] = useState({}); 
 
   const handleSave = async () => {
     try {
@@ -144,7 +137,7 @@ export default function PetDetail() {
 
       const updatedPet = await response.json();
       setPet(updatedPet);
-      setIsEditing(false);  // cerrar modo edición al guardar
+      setIsEditing(false);  
     } catch (error) {
       alert(`Failed to update pet info: ${error.message}`);
     }
@@ -201,7 +194,6 @@ export default function PetDetail() {
 
   const handleStartChat = async () => {
     if (chatOpen) {
-      // Si chat ya abierto, cerrar y limpiar
       setChatOpen(false);
       setSelectedChat(null);
       return;
@@ -241,10 +233,11 @@ export default function PetDetail() {
 
   return (
     <>
-      {/* NAVBAR */}
       <nav className={`navbar ${menuOpen ? "expanded" : ""}`}>
         <div className="navbar-top">
-          <h1 className="logo">Pawfect Match 🐾</h1>
+          <h1 className="logo">
+            <span className="logo-text">Find A Pet</span> <span className="logo-icon">🐾</span>
+          </h1>
           <div className="navbar-right">
             {user ? (
               <>
@@ -506,7 +499,6 @@ export default function PetDetail() {
                   </>
                 )}
               </div>
-              {/* Botones Save / Cancel justo aquí */}
               {canEdit && isEditing && (
                 <div className="action-buttons" style={{ marginTop: "1rem" }}>
                   <button className="save-button" onClick={handleSave}>

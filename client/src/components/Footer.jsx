@@ -23,7 +23,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        © {currentYear} Pawfect Match. All rights reserved.
+        © {currentYear} Find A Pet. All rights reserved.
       </div>
     </footer>
   );

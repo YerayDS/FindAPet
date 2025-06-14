@@ -7,7 +7,6 @@ const API_URL = "http://localhost:4000";
 export const AdoptionProvider = ({ children }) => {
   const [successfulAdoptions, setSuccessfulAdoptions] = useState(0);
 
-  // Al cargar el componente, obtener el contador guardado en la base de datos
   useEffect(() => {
     fetch(`${API_URL}/api/adoption/count`)
       .then((res) => res.json())

@@ -63,3 +63,36 @@ html, body {
   font-size: 0.9rem;
   opacity: 0.8;
 }
+
+
+/************************************** RESPONSIVE TABLET SECTION **************************************/
+
+@media screen and (min-width: 701px) and (max-width: 1024px) {
+  .footer-heading {
+    font-size: 1.1rem;
+  }
+
+  .footer-socials a {
+    font-size: 1.2rem;
+  }
+
+  .footer-bottom {
+    font-size: 0.85rem;
+  }
+}
+
+/************************************** RESPONSIVE MOBILE SECTION **************************************/
+
+@media screen and (max-width: 700px) {
+  .footer-heading {
+    font-size: 1rem;
+  }
+
+  .footer-socials a {
+    font-size: 1rem;
+  }
+
+  .footer-bottom {
+    font-size: 0.8rem;
+  }
+}

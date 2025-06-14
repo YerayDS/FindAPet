@@ -13,7 +13,6 @@ export const authenticateToken = (req, res, next) => {
       return res.status(403).json({ error: "Token inválido o expirado" });
     }
 
-    // decoded debe contener { id, email, role } si el token fue bien firmado
     req.user = {
       id: decoded.id,
       email: decoded.email,

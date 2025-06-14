@@ -10,13 +10,13 @@
   color: #333;
 }
 
+/************************************** ABOUT FIND A PET SECTION **************************************/
+
 .about-section {
   margin-top: 80px;
   display: flex;
   flex-direction: column;
 }
-
-/* === TOP SECTION === */
 
 .about-top {
   display: flex;
@@ -28,7 +28,7 @@
 
 .about-image {
   width: 50%;
-  height: 580px; /* Altura fija */
+  height: 580px; 
   object-fit: cover;
   object-position: center;
   border-radius: 16px;
@@ -66,8 +66,6 @@
   font-weight: 800;
 }
 
-/* === BOTTOM TEXT === */
-
 .about-bottom-text {
   opacity: 0;
   transform: translateY(40px);
@@ -96,7 +94,7 @@
   font-weight: 500;
 }
 
-/* CONTACT SECTION */
+/************************************** CONTACT SECTION **************************************/
 
 .contact-section {
   width: 100vw;
@@ -114,6 +112,7 @@
   max-width: 900px;
   margin: 0 auto;
   padding: 40px 30px;
+  width: 90%;
   font-family: 'Helvetica Neue', sans-serif;
   color: #333;
 }
@@ -194,7 +193,7 @@
   transform: translateY(0);
 }
 
-/* FAQ SECTION */
+/************************************** FAQ SECTION **************************************/
 
 .faq-section {
   width: 100vw;
@@ -261,7 +260,7 @@
 }
 
 .faq-item.active .faq-answer {
-  max-height: 500px; /* o un número mayor si la respuesta es más larga */
+  max-height: 500px; 
   opacity: 1;
   margin-top: 12px;
 }
@@ -282,30 +281,58 @@
 }
 
 
-/* === RESPONSIVE STYLES === */
+/************************************** RESPONSIVE SECTION **************************************/
 
-@media (max-width: 768px) {
+/* TABLET RESPONSIVE */
+@media screen and (min-width: 701px) and (max-width: 1024px) {
+  .about-image {
+    width: 45%;
+    height: 420px;
+  }
+
+  .about-top-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .about-top-text p {
+    font-size: 1rem;
+  }
+
+  .about-bottom-text p {
+    font-size: 1.2rem;
+  }
+}
+
+
+/* MOBILE RESPONSIVE */
+@media screen and (max-width: 700px) {
   .about-top {
     flex-direction: column;
-    gap: 30px;
+    gap: 1.5rem;
   }
 
   .about-image {
     width: 100%;
-    max-height: 300px;
   }
 
-  .about-top-text h1 {
-    font-size: 2.4rem;
+  .about-top-text {
+    align-items: center;
     text-align: center;
   }
 
+  .about-top-text h1 {
+    font-size: 2.5rem;
+  }
+
   .about-top-text p {
-    font-size: 1.2rem;
-    text-align: justify;
+    font-size: 1.4rem;
+  }
+
+  .about-bottom-text {
+    padding: 30px 20px;
   }
 
   .about-bottom-text p {
-    font-size: 1rem;
+    font-size: 1.4rem;
   }
 }

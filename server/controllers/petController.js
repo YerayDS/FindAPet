@@ -1,6 +1,5 @@
 import Pet from "../models/Pet.js";
 
-// Obtener todas las mascotas
 export const getAllPets = async (req, res) => {
   try {
     const pets = await Pet.find();
@@ -10,7 +9,6 @@ export const getAllPets = async (req, res) => {
   }
 };
 
-// Obtener una mascota por ID
 export const getPetById = async (req, res) => {
   try {
     const pet = await Pet.findById(req.params.id);
@@ -21,18 +19,17 @@ export const getPetById = async (req, res) => {
   }
 };
 
-// Crear una nueva mascota
 export const createPet = async (req, res) => {
   try {
     const petData = req.body;
 
     if (req.file) {
-      petData.photo = `/uploads/${req.file.filename}`; // Ruta para frontend
+      petData.photo = `/uploads/${req.file.filename}`; 
     }
 
     const newPet = new Pet({
       ...petData,
-      owner: req.user.id, // Asigna el dueño autenticado
+      owner: req.user.id, 
     });
 
     await newPet.save();
@@ -42,14 +39,12 @@ export const createPet = async (req, res) => {
   }
 };
 
-// Actualizar una mascota
 export const updatePet = async (req, res) => {
   try {
     const pet = await Pet.findById(req.params.id);
 
     if (!pet) return res.status(404).json({ error: "Mascota no encontrada" });
 
-    // Validar que el usuario autenticado sea el dueño
     if (!req.user || pet.owner.toString() !== req.user.id) {
       return res.status(403).json({ error: "No autorizado para editar esta mascota" });
     }
@@ -67,14 +62,12 @@ export const updatePet = async (req, res) => {
   }
 };
 
-// Eliminar una mascota
 export const deletePet = async (req, res) => {
   try {
     const pet = await Pet.findById(req.params.id);
 
     if (!pet) return res.status(404).json({ error: "Mascota no encontrada" });
 
-    // Validar que el usuario autenticado sea el dueño
     if (!req.user || pet.owner.toString() !== req.user.id) {
       return res.status(403).json({ error: "No autorizado para eliminar esta mascota" });
     }

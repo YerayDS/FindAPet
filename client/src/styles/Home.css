@@ -3,17 +3,18 @@ body {
   padding: 0;
 }
 
-/* Navbar Container */
+/************************************** NAV BAR SECTION **************************************/
+
 .navbar {
   background-color: #fcbf97;
   position: fixed;
   width: 100%;
   top: 0;
   left: 0;
-  box-shadow: none; /* sin sombra */
+  box-shadow: none; 
   z-index: 1000;
   overflow: hidden;
-  max-height: 60px; /* altura navbar cuando está cerrada */
+  max-height: 60px; 
   transition: max-height 0.4s ease;
 }
 
@@ -33,22 +34,22 @@ body {
   cursor: pointer;
 }
 
-/* Navbar expandida */
 .navbar.expanded {
-  max-height: 300px; /* suficiente para mostrar menú */
+  max-height: 300px; 
 }
 
 .navbar-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 2rem; /* padding a izquierda y derecha */
+  padding: 0 2rem; 
+  flex-wrap: wrap;
 }
 
 .navbar-right {
   display: flex;
   align-items: center;
-  gap: 2.5rem; /* separación mayor */
+  gap: 2.5rem; 
 }
 
 .login-button {
@@ -63,18 +64,15 @@ body {
   user-select: none;
 }
 
-
-/* Logo text */
 .logo {
   font-size: 1.8rem;
   font-weight: bold;
   color: #333;
-  margin: 1rem 0 1rem 2rem; /* margen top-bottom 1rem, y left fijo 2rem */
+  margin: 1rem 0 1rem 2rem; 
   padding: 0;
   user-select: none;
 }
 
-/* Icono hamburguesa */
 .menu-icon {
   cursor: pointer;
   color: #333;
@@ -82,7 +80,6 @@ body {
   user-select: none;
 }
 
-/* Menú de navegación */
 .nav-menu {
   display: flex;
   flex-direction: column;
@@ -92,7 +89,6 @@ body {
   gap: 1rem;
 }
 
-/* Links */
 .nav-menu a {
   text-decoration: none;
   color: #333;
@@ -107,7 +103,6 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Hover/focus de links */
 .nav-menu a:hover,
 .nav-menu a:focus {
   background-color: #f889447b;
@@ -115,7 +110,7 @@ body {
 }
 
 
-/* Contenido principal de la página */
+/************************************** MAIN CONTENT SECTION **************************************/
 .home-content {
   margin-top: 80px;
   text-align: center;
@@ -137,11 +132,13 @@ body {
   padding-top: 20px; 
 }
 
+/************************************** ADOPTION SECTION **************************************/
+
 .adoption-section {
   background: #fff6ec;
   background-size: cover;
   padding: 3rem 2rem 2rem 2rem;
-  margin: 2rem 0 0 0; /* eliminamos el margen inferior */
+  margin: 2rem 0 0 0; 
   width: 100%;
   border-radius: 0;
   box-shadow: none;
@@ -150,20 +147,20 @@ body {
 }
 
 .adoption-quote {
-  font-size: 3.5rem; /* tamaño grande */
-  font-weight: 700; /* un poco más negrita */
+  font-size: 3.5rem; 
+  font-weight: 700; 
   margin-bottom: 3rem;
   margin-top: 0;
-  color: #264653; /* un azul oscuro más cálido, menos frío */
-  letter-spacing: 0.05em; /* un poco más de espacio entre letras */
-  text-shadow: 0 1px 3px rgba(0,0,0,0.1); /* sombra muy sutil para dar profundidad */
+  color: #264653; 
+  letter-spacing: 0.05em; 
+  text-shadow: 0 1px 3px rgba(0,0,0,0.1); 
 }
 
 .adoption-stats {
-  font-size: 1.8rem; /* más grande */
+  font-size: 1.8rem; 
   font-weight: 500;
   color: #7b3e00;
-  margin-top: 0; /* para que no tenga espacio extra arriba */
+  margin-top: 0; 
 }
 
 .adoption-quote-line {
@@ -195,14 +192,17 @@ body {
   margin-top: 2rem;
 }
 
-/* PET TO SAVE SECTION */
+/************************************** PET TO SAVE SECTION **************************************/
+
 .featured-pet-section {
   margin: 3rem auto;
-  max-width: 1200px; /* más ancho para permitir espacio a ambos lados */
+  width: 90%;      
+  max-width: 1200px;  
   padding: 1rem;
   background-color: #fef9f1;
   border-radius: 12px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; 
 }
 
 .featured-pet-section h3 {
@@ -216,12 +216,12 @@ body {
   align-items: flex-start;
   gap: 2rem;
   padding: 1rem;
-  flex-wrap: wrap; /* Responsivo */
+  flex-wrap: wrap; 
 }
 
 .pet-cardh {
-  flex: 3 1 0; /* Para que crezca 3 veces más que el texto */
-  max-width: none; /* Quita límite para que flex funcione */
+  flex: 3 1 0; 
+  max-width: none; 
   height: 500px;
   display: flex;
   flex-direction: column;
@@ -233,24 +233,24 @@ body {
 }
 
 .pet-photo-largeh {
-  flex: 0 0 75%; /* No crece ni se encoge, ocupa 75% */
+  flex: 0 0 75%; 
   width: 100%;
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 0.5rem;
-  min-height: 0; /* para flexbox */
+  min-height: 0; 
 }
 
 .pet-detailsh {
-  flex: 0 0 25%; /* Ocupa 25% */
+  flex: 0 0 25%; 
   overflow: hidden;
   font-size: 0.9rem;
   opacity: 0.85;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centra verticalmente */
-  align-items: center;     /* Centra horizontalmente */
-  text-align: center;      /* Asegura que el texto interno se centre */
+  justify-content: center; 
+  align-items: center;    
+  text-align: center;      
 }
 
 .pet-name-gender {
@@ -273,8 +273,8 @@ body {
 
 
 .featured-pet-text {
-  flex: 2 1 0; /* Crece 2 veces menos que la tarjeta */
-  max-width: none; /* Para que flex controle el ancho */
+  flex: 2 1 0; 
+  max-width: none; 
   padding: 1rem;
   text-align: center;
 }
@@ -286,7 +286,7 @@ body {
 }
 
 .featured-pet-text p {
-  font-size: 1.45rem; /* Más grande */
+  font-size: 1.45rem; 
   line-height: 1.7;
   color: #444;
   margin-bottom: 1.25rem;
@@ -305,7 +305,7 @@ body {
   transform: translateY(0px);
 }
 
-/************************************** WHY ADOPT **************************************/
+/************************************** WHY ADOPT SECTION **************************************/
 
 .why-adopt-background {
   background-color: #fef9f1;
@@ -388,7 +388,7 @@ body {
   list-style: none;
 }
 
-/************************************** RESCUERS **************************************/
+/************************************** RESCUERS SECTION **************************************/
 
 .embajadores {
     text-align: center;
@@ -478,4 +478,109 @@ body {
     max-width: 90%;  
     margin: 0 auto;  
     padding: 0 10px; 
+}
+
+
+/************************************** RESPONSIVE TABLET SECTION **************************************/
+
+@media screen and (min-width: 701px) and (max-width: 1024px) {
+  /*  */
+  .adoption-quote-line {
+    font-size: 2.8rem;
+  }
+
+  .adoption-stats {
+    font-size: 1.4rem;
+  }
+
+  .adoption-stats.emphasized {
+    font-size: 1.6rem;
+  }
+
+  /*  */
+  .featured-pet-wrapper {
+    flex-direction: row;
+  }
+
+  .pet-cardh,
+  .featured-pet-text {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .pet-photo-largeh {
+    height: auto;
+  }
+
+  .featured-pet-text h2 {
+    font-size: 1.8rem;
+  }
+
+  .featured-pet-text p {
+    font-size: 1.2rem;
+  }
+}
+
+/************************************** RESPONSIVE MOBILE SECTION **************************************/
+
+@media screen and (max-width: 700px) {
+  .logo-text {
+    display: none;
+  }
+
+  .logo-icon {
+    font-size: 0rem; 
+  }
+    
+  /*  */
+  .adoption-quote-line {
+    font-size: 2.2rem;
+  }
+
+  .adoption-stats {
+    font-size: 1.2rem;
+  }
+
+  .adoption-stats.emphasized {
+    font-size: 1.4rem;
+  }
+
+  /*  */
+  
+  .featured-pet-wrapper {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .pet-cardh,
+  .featured-pet-text {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .pet-photo-largeh {
+    height: auto;
+  }
+
+  .pet-detailsh {
+    font-size: 0.8rem;
+  }
+
+  .pet-name-gender {
+    font-size: 1rem;
+  }
+
+  .gender-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .featured-pet-text h2 {
+    font-size: 1.8rem;
+  }
+
+  .featured-pet-text p {
+    font-size: 1.3rem;
+    line-height: 1.5;
+  }
 }

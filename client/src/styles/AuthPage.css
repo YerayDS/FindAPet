@@ -20,18 +20,18 @@
 }
 
 .auth-container {
-  position: fixed; /* para que quede fijo en pantalla */
+  position: fixed; 
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 600px; /* más ancho */
-  max-width: 90vw; /* para que no se pase en pantallas pequeñas */
+  width: 600px;
+  max-width: 90vw; 
   padding: 3rem 2rem;
   background-color: #f0f4f8;
   border-radius: 12px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
   text-align: center;
-  z-index: 9999; /* para que esté encima de todo */
+  z-index: 9999; 
 }
 
 .auth-toggle {

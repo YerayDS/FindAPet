@@ -15,7 +15,7 @@ export default function Home() {
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/pets") // ajusta la URL a tu backend real
+    fetch("http://localhost:4000/api/pets") 
       .then((res) => res.json())
       .then((data) => setPets(data))
       .catch((err) => console.error("Error fetching pets:", err));
@@ -32,7 +32,6 @@ export default function Home() {
     (name, gender) => `This lovely ${gender === "Male" ? "boy" : "girl"}, ${name}, is eager to find a caring family to call their own.`,
   ];
 
-  // Genera la descripción solo si randomPet está disponible
   let description = "";
   if (randomPet) {
     const randomIndex = Math.floor(Math.random() * petDescriptions.length);
@@ -77,11 +76,11 @@ export default function Home() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          observer.disconnect(); // Si solo quieres que se active una vez
+          observer.disconnect(); 
         }
       },
       {
-        threshold: 0.3, // Cuánto tiene que estar visible para activarse
+        threshold: 0.3, 
       }
     );
 
@@ -96,7 +95,9 @@ export default function Home() {
     <div className="home-page">
       <nav className={`navbar ${menuOpen ? "expanded" : ""}`}>
         <div className="navbar-top">
-          <h1 className="logo">Pawfect Match 🐾</h1>
+          <h1 className="logo">
+            <span className="logo-text">Find A Pet</span> <span className="logo-icon">🐾</span>
+          </h1>
           <div className="navbar-right">
             {user ? (
               <>
@@ -191,6 +192,7 @@ export default function Home() {
           <p>Loading pet...</p>
         )}
       </section>
+      
       <div className="why-adopt-background">
         <section className="why-adopt-section">
         <h1 className="why-adopt-title">Why Adopt?</h1>

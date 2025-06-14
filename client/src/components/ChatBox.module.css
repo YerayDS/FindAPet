@@ -1,11 +1,11 @@
-/* components/ChatBox.module.css */
 
 .chatBox {
   position: fixed;
   bottom: 80px;
   right: 24px;
-  width: 420px;       /* Antes 320px */
-  height: 500px;      /* Nueva altura */
+  max-width: 90%;
+  width: 420px;       
+  height: 500px;      
   background-color: #ffffff;
   border: 1px solid #ddd;
   border-radius: 12px;
@@ -20,12 +20,12 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Separar elementos */
+  justify-content: space-between; 
   font-weight: bold;
   font-size: 18px;
   margin-bottom: 12px;
   color: #333;
-  padding: 0 8px; /* Un poco de espacio a los lados */
+  padding: 0 8px; 
   min-height: 32px;
   gap: 8px;
 }
@@ -79,7 +79,7 @@
   flex-direction: column;
   gap: 8px;
   overflow-y: auto;
-  flex-grow: 1; /* Que la lista ocupe el espacio disponible */
+  flex-grow: 1; 
 }
 
 .userBox {
@@ -104,7 +104,7 @@
 }
 
 .messages {
-  flex-grow: 1; /* Que ocupe el espacio disponible */
+  flex-grow: 1; 
   overflow-y: auto;
   border: 1px solid #eee;
   padding: 8px;
@@ -125,17 +125,17 @@
 
 .message {
   display: flex;
-  width: 100%; /* Ocupa todo el ancho para que justify-content funcione */
+  width: 100%; 
   word-wrap: break-word;
 }
 
 .sent {
-  justify-content: flex-end; /* Empuja el mensaje a la derecha */
+  justify-content: flex-end; 
   align-self: flex-end;
 }
 
 .received {
-  justify-content: flex-start; /* Empuja el mensaje a la izquierda */
+  justify-content: flex-start; 
   align-self: flex-start;
 }
 
@@ -145,7 +145,7 @@
   font-size: 14px;
   line-height: 1.4;
   max-width: 70%;
-  background-color: #e1ffc7; /* color base, será sobrescrito */
+  background-color: #e1ffc7; 
   color: #000;
   word-wrap: break-word;
   white-space: pre-wrap;
@@ -154,13 +154,13 @@
 .sent .messageText {
   background-color: #dcf8c6;
   color: #000;
-  border-bottom-right-radius: 0; /* estilo burbuja lado derecho */
+  border-bottom-right-radius: 0; 
 }
 
 .received .messageText {
   background-color: #f1f0f0;
   color: #000;
-  border-bottom-left-radius: 0; /* estilo burbuja lado izquierdo */
+  border-bottom-left-radius: 0; 
 }
 
 .sendButton {
@@ -222,7 +222,6 @@
 }
 
 .navchatButton {
-  /* Aquí va tu estilo actual para el botón de nav */
   background-color: #007bff;
   color: white;
   padding: 8px 16px;
@@ -237,7 +236,7 @@
 }
 
 .petdetailChatButton {
-  background-color: #4caf50; /* verde más visible */
+  background-color: #4caf50; 
   color: white;
   padding: 12px 24px;
   font-size: 18px;

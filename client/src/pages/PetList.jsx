@@ -149,10 +149,11 @@ export default function PetList() {
   return (
     <>
     <div className="petlist-full">
-        {/* Navbar */}
         <nav className={`petlist-navbar ${menuOpen ? "expanded" : ""}`}>
           <div className="navbar-top">
-            <h1 className="logo">Pawfect Match 🐾</h1>
+            <h1 className="logo">
+              <span className="logo-text">Find A Pet</span> <span className="logo-icon">🐾</span>
+            </h1>
             <div className="navbar-right">
               {user ? (
                 <>
@@ -197,7 +198,6 @@ export default function PetList() {
           </div>
         </nav>
 
-        {/* Main content */}
         <main className="main-content">
           <div className="intro-text">
             <h1 className="main-title">Find Your Perfect Companion</h1>
@@ -206,7 +206,6 @@ export default function PetList() {
             </h2>
           </div>
 
-          {/* Filtro */}
           <section className="filter-section">
             <form className="filter-form" onSubmit={(e) => e.preventDefault()}>
               <select name="type" value={filters.type} onChange={handleFilterChange}>
@@ -257,7 +256,6 @@ export default function PetList() {
             </form>
           </section>
 
-          {/* Botón para abrir formulario SOLO SI user.role es give_for_adoption */}
           {user?.role === "give_for_adoption" && (
             <div className="register-button-container">
               <button className="register-button" onClick={openRegisterForm}>
@@ -266,7 +264,6 @@ export default function PetList() {
             </div>
           )}
 
-          {/* Modal con formulario */}
           {showRegisterForm && (
             <div className="modal-overlay">
               <div className="modal-content register-section pet-list-container">
@@ -336,7 +333,6 @@ export default function PetList() {
             </div>
           )}
 
-          {/* Lista de mascotas filtradas */}
           <section className="pet-list-section">
             <h3>Pet List</h3>
             {filteredPets.length === 0 ? (

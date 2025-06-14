@@ -188,7 +188,9 @@ export default function About() {
     <div className="about-full">
       <nav className={`navbar ${menuOpen ? "expanded" : ""}`}>
           <div className="navbar-top">
-            <h1 className="logo">Pawfect Match 🐾</h1>
+            <h1 className="logo">
+              <span className="logo-text">Find A Pet</span> <span className="logo-icon">🐾</span>
+            </h1>
             <div className="navbar-right">
               {user ? (
                 <>
@@ -201,7 +203,7 @@ export default function About() {
                   <button
                     onClick={() => {
                       logout();
-                      setMenuOpen(false); // opcional para cerrar el menú si está abierto
+                      setMenuOpen(false); 
                     }}
                     className="logout-button"
                   >
