@@ -17,22 +17,10 @@ import Chat from "./models/Chat.js";
 dotenv.config();
 const app = express();
 
-const allowedOrigins = [
-  'http://localhost:5173',
-  'https://find-a-pet-six.vercel.app'
-];
 
 app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin) return callback(null, true);
-    
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error(`Origin ${origin} no permitido por CORS`));
-    }
-  },
-  credentials: true
+  origin: "*",
+  credentials: true,
 }));
 
 app.use(express.json());
