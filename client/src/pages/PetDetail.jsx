@@ -112,7 +112,6 @@ export default function PetDetail() {
         healthy: !!healthStatus.healthy,
         about: aboutMe,
       };
-      console.log("Token:", user.token);
 
       const response = await fetch(`http://localhost:4000/api/pets/${id}`, {
         method: "PUT",
@@ -181,9 +180,7 @@ export default function PetDetail() {
         throw new Error("Failed to delete pet");
       }
 
-      console.log("Before increment:", successfulAdoptions);
       incrementAdoptions();
-      console.log("After increment:", successfulAdoptions + 1);
 
       navigate("/pets");
     } catch (error) {
@@ -552,7 +549,7 @@ export default function PetDetail() {
 
           {user?.role === "adopt" && pet.owner !== user.id && (
             <div className="chat-panel-wrapper">
-              <ChatPanel isInPetDetail={true} />
+              <ChatPanel isInPetDetail={true} targetUserId={pet.owner} />
             </div>
           )}
         </div>

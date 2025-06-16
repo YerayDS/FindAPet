@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import styles from "./ChatBox.module.css"; 
 
-const ChatPanel = ({ isInPetDetail }) => {
+const ChatPanel = ({ isInPetDetail, targetUserId }) => {
   const { token, user } = useContext(AuthContext);
   const [chatList, setChatList] = useState([]);
   const [selectedChat, setSelectedChat] = useState(null);
@@ -21,6 +21,7 @@ const ChatPanel = ({ isInPetDetail }) => {
             Authorization: `Bearer ${token}`,
           },
         });
+
         if (!res.ok) throw new Error("Error cargando chats");
 
         const data = await res.json();
@@ -46,7 +47,7 @@ const ChatPanel = ({ isInPetDetail }) => {
     ws.current = socket;
 
     socket.onopen = () => {
-      console.log("✅ Conectado al WebSocket chat", selectedChat._id);
+      console.log("Conectado al WebSocket chat", selectedChat._id);
     };
 
     socket.onmessage = (event) => {
@@ -78,7 +79,6 @@ const ChatPanel = ({ isInPetDetail }) => {
   const handleSendMessage = () => {
     if (!messageText.trim()) return;
     if (!ws.current || ws.current.readyState !== WebSocket.OPEN) {
-      console.warn("⚠️ WebSocket no está abierto");
       return;
     }
 
@@ -100,9 +100,41 @@ const ChatPanel = ({ isInPetDetail }) => {
     }
   };
 
-  const handleToggleChatList = () => {
+  const handleToggleChatList = async () => {
+    if (!chatOpen && isInPetDetail && targetUserId) {
+      const existingChat = chatList.find(chat =>
+        chat.participants.some(p => toStringId(p._id) === toStringId(targetUserId))
+      );
+
+      if (existingChat) {
+        setSelectedChat(existingChat);
+      } else {
+        try {
+          const resNewChat = await fetch("http://localhost:4000/api/chats", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ userId: targetUserId }),
+          });
+
+          if (resNewChat.ok) {
+            const newChat = await resNewChat.json();
+            setChatList(prev => [...prev, newChat]);
+            setSelectedChat(newChat);
+          } else {
+            console.error("Error creando nuevo chat");
+          }
+        } catch (error) {
+          console.error("Error creando nuevo chat", error);
+        }
+      }
+    } else if (!chatOpen && !isInPetDetail) {
+      setSelectedChat(null);
+    }
+
     setChatOpen(!chatOpen);
-    setSelectedChat(null);
   };
 
   const handleSelectChat = (chat) => {
@@ -137,15 +169,15 @@ const ChatPanel = ({ isInPetDetail }) => {
               <p className={styles.emptyMessage}>You don't have any conversations yet.</p>
             ) : (
               chatList.map((chat) => {
-                const otherUser = chat.participants.find((p) => p._id !== user.id);
+                const otherUser = chat.participants.find((p) => toStringId(p._id) !== userId);
                 return (
                   <div
                     key={chat._id}
                     className={styles.userRow}
                     onClick={() => handleSelectChat(chat)}
-                    >
+                  >
                     {otherUser?.username || "Desconocido"}
-                    </div>
+                  </div>
                 );
               })
             )}
@@ -179,8 +211,7 @@ const ChatPanel = ({ isInPetDetail }) => {
                 }
 
                 const isSentByUser = senderId === userId;
-                console.log(`Mensaje #${idx}`, msg, "SenderId:", senderId, "UserId:", userId, "isSentByUser:", isSentByUser);
-                
+
                 return (
                   <div
                     key={idx}

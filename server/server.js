@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
   res.send('Servidor funcionando');
 });
 
-const SECRET = process.env.JWT_SECRET || "tu_clave_secreta_aqui";
+const SECRET = process.env.JWT_SECRET || "Clave";
 
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers.authorization || "";

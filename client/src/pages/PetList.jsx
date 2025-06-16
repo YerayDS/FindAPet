@@ -231,9 +231,9 @@ export default function PetList() {
               <select name="size" value={filters.size} onChange={handleFilterChange}>
                 <option value="">All Sizes</option>
                 <option value="Toy">Toy</option>
-                <option value="Pequeño">Small</option>
-                <option value="Mediano">Medium</option>
-                <option value="Grande">Big</option>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Big">Big</option>
               </select>
 
               <select name="gender" value={filters.gender} onChange={handleFilterChange}>
@@ -291,9 +291,9 @@ export default function PetList() {
                   <select name="size" value={form.size} onChange={handleChange} required>
                     <option value="">Select Size</option>
                     <option value="Toy">Toy</option>
-                    <option value="Pequeño">Small</option>
-                    <option value="Mediano">Medium</option>
-                    <option value="Grande">Big</option>
+                    <option value="Small">Small</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Big">Big</option>
                   </select>
                   <select name="type" value={form.type} onChange={handleChange} required>
                     <option value="">Select Animal Type</option>
