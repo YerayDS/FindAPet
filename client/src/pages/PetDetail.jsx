@@ -201,7 +201,7 @@ export default function PetDetail() {
     if (!token || !pet?.owner) return;
 
     try {
-      const response = await fetch("${API_URL}/api/chats/get-or-create", {
+      const response = await fetch(`${API_URL}/api/chats/get-or-create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

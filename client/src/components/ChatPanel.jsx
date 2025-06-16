@@ -17,7 +17,7 @@ const ChatPanel = ({ isInPetDetail, targetUserId }) => {
 
     async function fetchChats() {
       try {
-        const res = await fetch("${API_URL}/api/chats", {
+        const res = await fetch(`${API_URL}/api/chats`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -115,7 +115,7 @@ const ChatPanel = ({ isInPetDetail, targetUserId }) => {
         setSelectedChat(existingChat);
       } else {
         try {
-          const resNewChat = await fetch("${API_URL}/api/chats", {
+          const resNewChat = await fetch(`${API_URL}/api/chats`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
