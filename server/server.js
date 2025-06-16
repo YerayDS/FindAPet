@@ -166,9 +166,9 @@ const PORT = process.env.PORT || 4000;
 
 connectDB()
   .then(() => {
-    server.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
-      console.log(`WebSocket server running on ws://localhost:${PORT}/ws`);
+    server.listen(PORT, '0.0.0.0', () => {
+      console.log(`Server running on http://0.0.0.0:${PORT}`);
+      console.log(`WebSocket server running on ws://0.0.0.0:${PORT}/ws`);
     });
   })
   .catch((err) => {
