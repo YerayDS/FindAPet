@@ -10,13 +10,14 @@ const ChatPanel = ({ isInPetDetail, targetUserId }) => {
   const [messages, setMessages] = useState([]);
   const [messageText, setMessageText] = useState("");
   const ws = useRef(null);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     if (!token) return;
 
     async function fetchChats() {
       try {
-        const res = await fetch("http://localhost:4000/api/chats", {
+        const res = await fetch("${API_URL}/api/chats", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -43,7 +44,11 @@ const ChatPanel = ({ isInPetDetail, targetUserId }) => {
       ws.current.close();
     }
 
-    const socket = new WebSocket(`ws://localhost:4000/ws?token=${token}&chatId=${selectedChat._id}`);
+    const wsProtocol = API_URL.startsWith("https") ? "wss" : "ws";
+    const wsHost = API_URL.replace(/^https?:\/\//, "");
+    const socket = new WebSocket(`${wsProtocol}://${wsHost}/ws?token=${token}&chatId=${selectedChat._id}`);
+
+
     ws.current = socket;
 
     socket.onopen = () => {
@@ -110,7 +115,7 @@ const ChatPanel = ({ isInPetDetail, targetUserId }) => {
         setSelectedChat(existingChat);
       } else {
         try {
-          const resNewChat = await fetch("http://localhost:4000/api/chats", {
+          const resNewChat = await fetch("${API_URL}/api/chats", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

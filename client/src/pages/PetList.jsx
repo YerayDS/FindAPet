@@ -14,6 +14,8 @@ import { useAdoption } from "../context/AdoptionContext";
 export default function PetList() {
   const location = useLocation();
   const { user, token, logout } = useContext(AuthContext);
+  const API_URL = import.meta.env.VITE_API_URL;
+
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [pets, setPets] = useState([]);
@@ -343,7 +345,7 @@ export default function PetList() {
                   <li key={pet._id} className="pet-card">
                     {pet.photo && (
                       <img
-                        src={`http://localhost:4000${pet.photo}`}
+                        src={`${API_URL}${pet.photo}`}
                         alt={pet.name}
                         className="pet-photo-large"
                       />

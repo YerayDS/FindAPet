@@ -30,6 +30,8 @@ export default function PetDetail() {
   const [chatOpen, setChatOpen] = useState(false);
   const [chat, setChat] = useState(null);
   const [selectedChat, setSelectedChat] = useState(null);
+  const API_URL = import.meta.env.VITE_API_URL;
+
 
 
 
@@ -61,7 +63,7 @@ export default function PetDetail() {
 
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/pets/${id}`)
+    fetch(`${API_URL}/api/pets/${id}`)
       .then((res) => {
         if (!res.ok) throw new Error("Pet not found");
         return res.json();
@@ -113,7 +115,7 @@ export default function PetDetail() {
         about: aboutMe,
       };
 
-      const response = await fetch(`http://localhost:4000/api/pets/${id}`, {
+      const response = await fetch(`${API_URL}/api/pets/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -144,7 +146,7 @@ export default function PetDetail() {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/api/pets/${pet._id}`, {
+      const response = await fetch(`${API_URL}/api/pets/${pet._id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -167,7 +169,7 @@ export default function PetDetail() {
 
   const handleAdopt = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/api/pets/${pet._id}`, {
+      const response = await fetch(`${API_URL}/api/pets/${pet._id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -199,7 +201,7 @@ export default function PetDetail() {
     if (!token || !pet?.owner) return;
 
     try {
-      const response = await fetch("http://localhost:4000/api/chats/get-or-create", {
+      const response = await fetch("${API_URL}/api/chats/get-or-create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -340,7 +342,7 @@ export default function PetDetail() {
         </div>
 
         <img
-          src={`http://localhost:4000${pet.photo}`}
+          src={`${API_URL}${pet.photo}`}
           alt={pet.name}
           className="pet-photo"
         />
