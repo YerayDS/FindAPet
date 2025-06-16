@@ -15,7 +15,7 @@ export default function Home() {
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/pets") 
+    fetch(`${import.meta.env.VITE_API_URL}/api/pets`)
       .then((res) => res.json())
       .then((data) => setPets(data))
       .catch((err) => console.error("Error fetching pets:", err));
@@ -157,7 +157,7 @@ export default function Home() {
             <div className="pet-cardh">
               {randomPet.photo && (
                 <img
-                  src={`http://localhost:4000${randomPet.photo}`}
+                  src={`${import.meta.env.VITE_API_URL}${randomPet.photo}`}
                   alt={randomPet.name}
                   className="pet-photo-largeh"
                 />
