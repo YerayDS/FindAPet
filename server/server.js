@@ -19,16 +19,23 @@ const app = express();
 
 
 const allowedOrigins = [
-  "https://find-a-pet-git-main-yeraydshs-projects.vercel.app", 
-  "https://find-a-pet-six.vercel.app", 
-  "http://localhost:5173", 
+  "https://find-a-pet-git-main-yeraydshs-projects.vercel.app",
+  "https://find-a-pet-six.vercel.app",
+  "http://localhost:5173",
 ];
+
+const dynamicOriginRegex = /^https:\/\/find-a-[a-z0-9-]+\.vercel\.app$/;
+
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (
+      !origin ||
+      allowedOrigins.includes(origin) ||
+      dynamicOriginRegex.test(origin)
+    ) {
       callback(null, true);
     } else {
-      callback(new Error("No permitido por CORS"));
+      callback(new Error("Not allowed by CORS: " + origin));
     }
   },
   credentials: true,
